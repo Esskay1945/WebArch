@@ -5,38 +5,14 @@
  */
 
 const PRICES = {
-  'stat-price': { usd: '1,500', inr: '75,000' },
-  'p-starter':  { usd: '1,500', inr: '75,000' },
-  'p-growth':   { usd: '3,000', inr: '1,50,000' },
-  'p-support':  { usd: '100',   inr: '5,000' },
-  'p-upgrade':  { usd: '200',   inr: '10,000' }
+  'stat-price': { usd: '1,500', inr: '15,000' },
+  'p-starter':  { usd: '1,500', inr: '15,000' },
+  'p-growth':   { usd: '3,000', inr: '25,000' },
+  'p-support':  { usd: '100',   inr: '2,000' },
+  'p-upgrade':  { usd: '200',   inr: '5,000' }
 };
 
 export function initPricing() {
-  const btnUsd = document.getElementById('btn-usd');
-  const btnInr = document.getElementById('btn-inr');
-
-  if (btnUsd && btnInr) {
-    btnUsd.addEventListener('click', () => {
-      localStorage.setItem('webarch_currency', 'USD');
-      updateCurrency(false, true);
-    });
-    btnInr.addEventListener('click', () => {
-      localStorage.setItem('webarch_currency', 'INR');
-      updateCurrency(true, true);
-    });
-  }
-
-  // Check saved preference first
-  const saved = localStorage.getItem('webarch_currency');
-  if (saved === 'INR') {
-    updateCurrency(true, true);
-    return;
-  } else if (saved === 'USD') {
-    updateCurrency(false, true);
-    return;
-  }
-
   detectLocation().then((isIndia) => {
     updateCurrency(isIndia);
   });
@@ -115,30 +91,13 @@ async function detectLocation() {
   return false;
 }
 
-function updateCurrency(isIndia, isSaved = false) {
+function updateCurrency(isIndia) {
   const symbol = isIndia ? '₹' : '$';
-
-  // Update active state on toggle buttons
-  const btnUsd = document.getElementById('btn-usd');
-  const btnInr = document.getElementById('btn-inr');
-  if (btnUsd && btnInr) {
-    if (isIndia) {
-      btnInr.classList.add('active');
-      btnUsd.classList.remove('active');
-    } else {
-      btnUsd.classList.add('active');
-      btnInr.classList.remove('active');
-    }
-  }
 
   // Update geo note
   const geoNote = document.getElementById('geo-note');
   if (geoNote) {
-    if (isSaved) {
-      geoNote.textContent = isIndia ? '📍 Selected: INR (₹)' : '📍 Selected: USD ($)';
-    } else {
-      geoNote.textContent = isIndia ? '📍 Detected: India · Showing INR (₹)' : '📍 Detected: International · Showing USD ($)';
-    }
+    geoNote.textContent = isIndia ? '📍 Regional Pricing: INR (₹)' : '📍 Global Pricing: USD ($)';
   }
 
   // Update all currency symbols (.curr-sym in index.html)
