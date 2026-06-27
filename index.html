@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>WebArch — God-Tier Digital Architecture</title>
+  <meta name="description" content="Custom-built web apps for founders and small businesses. No templates, no bloat — starting at $1,500 with 3 months free maintenance."/>
+  <meta name="theme-color" content="#060814"/>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <script type="module" crossorigin src="./assets/index-BNnBFKmc.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DMfNbsPo.css">
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <video id="preloader-video" autoplay muted playsinline class="preloader-video">
+    <source src="./assets/2-DSje5-ML.mp4" type="video/mp4">
+    <source src="./init.mp4" type="video/mp4">
+    <source src="./assets/2-DSje5-ML.mp4" type="video/mp4">
+    <source src="init.mp4" type="video/mp4">
+  </video>
+  <canvas id="preloader-canvas" width="200" height="200"></canvas>
+  <div class="load-bar-track"><div class="load-bar" id="load-bar"></div></div>
+  <div class="load-text" id="load-text">INITIALIZING GOD-TIER ENGINE</div>
+  <div class="skip-hint">[ CLICK ANYWHERE TO SKIP ]</div>
+</div>
+
+<!-- SKY BACKGROUND -->
+<div id="sky-background"></div>
+
+<!-- THREE.JS CANVAS -->
+<canvas id="three-canvas"></canvas>
+
+<!-- ════════════════════════════════════
+     MAIN APP
+     ════════════════════════════════════ -->
+<div id="app">
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="url(#logo-grad)" stroke-width="2.5" fill="rgba(0,229,255,0.1)"/>
+        <path d="M16 4V16M16 16L28 22M16 16L4 22" stroke="#C6FF00" stroke-width="2"/>
+        <circle cx="16" cy="16" r="3" fill="#00E5FF"/>
+        <defs>
+          <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00E5FF"/>
+            <stop offset="100%" stop-color="#8B5CF6"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="logo-name">Web<span>Arch</span></div>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="#features" class="nav-link-hover">What We Build</a></li>
+    <li><a href="#agent" class="nav-link-hover">AI Agent</a></li>
+    <li><a href="#process" class="nav-link-hover">Process</a></li>
+    <li><a href="#pricing" class="nav-link-hover">Pricing</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta nav-link-hover">Book a Free Call →</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-panel" id="mobile-panel">
+  <a href="#features">What We Build</a>
+  <a href="#agent">AI Agent</a>
+  <a href="#process">Process</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#contact">Book a Call</a>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-badge" id="hero-badge"><span class="hero-dot"></span>Now onboarding — 3 spots left this month</div>
+  <h1 id="hero-h1" class="title-hover" data-title="Websites That Convert, Not Just Look Pretty">Websites That <span class="gradient-text">Convert</span>,<br/>Not Just Look Pretty</h1>
+  <p class="hero-sub" id="hero-sub">Custom-built web apps for US founders and small businesses. No templates, no agencies, no bloat — and 3 months of free maintenance included.</p>
+  <div class="hero-ctas" id="hero-ctas">
+    <a href="#contact" class="btn-primary nav-link-hover">Start Your Project →</a>
+    <a href="#features" class="btn-ghost nav-link-hover">See What We Build</a>
+  </div>
+  <div class="hero-stats" id="hero-stats">
+    <div class="stat-block"><div class="stat-val"><span class="curr-sym">$</span><span id="stat-price">1,500</span></div><div class="stat-lbl">Starting price</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-block"><div class="stat-val">14<span>d</span></div><div class="stat-lbl">Average delivery</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-block"><div class="stat-val">3<span>mo</span></div><div class="stat-lbl">Free maintenance</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-block"><div class="stat-val">0<span>%</span></div><div class="stat-lbl">Cookie-cutter templates</div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Custom Design</span><span class="marquee-item">Bank-Grade Security</span>
+    <span class="marquee-item">3-Month Free Maintenance</span><span class="marquee-item">No Templates</span>
+    <span class="marquee-item">14-Day Delivery</span><span class="marquee-item">US-Based Clients</span>
+    <span class="marquee-item">AI Calling Agent</span><span class="marquee-item">Post-Launch Support</span>
+    <span class="marquee-item">Custom Design</span><span class="marquee-item">Bank-Grade Security</span>
+    <span class="marquee-item">3-Month Free Maintenance</span><span class="marquee-item">No Templates</span>
+    <span class="marquee-item">14-Day Delivery</span><span class="marquee-item">US-Based Clients</span>
+    <span class="marquee-item">AI Calling Agent</span><span class="marquee-item">Post-Launch Support</span>
+  </div>
+</div>
+
+<!-- ══════════ FEATURES ══════════ -->
+<section class="section" id="features">
+  <p class="section-label sr">Why WebArch</p>
+  <h2 class="section-title sr title-hover" data-title="Built different. Priced honestly.">Built different.<br/><em>Priced honestly.</em></h2>
+  <div class="bento-grid">
+    <div class="bento-card wide sr tilt-target">
+      <div class="bento-icon" style="background:rgba(0,229,255,0.12); color:#00E5FF; border:1px solid rgba(0,229,255,0.3)">💸</div>
+      <div class="bento-title title-hover" data-title="Half the Agency Price">Half the Agency Price</div>
+      <div class="bento-desc">Most agencies quote $8K–$20K for what we do starting at $1,500. No account managers, no middlemen — you pay for craft, not overhead.</div>
+    </div>
+    <div class="bento-card sr tilt-target">
+      <div class="bento-icon" style="background:rgba(139,92,246,0.12); color:#8B5CF6; border:1px solid rgba(139,92,246,0.3)">🔒</div>
+      <div class="bento-title title-hover" data-title="Enterprise-Grade Security">Enterprise-Grade Security</div>
+      <div class="bento-desc">HTTPS, OWASP-compliant code, hardened headers, rate limiting, and input sanitization — built in from line one.</div>
+    </div>
+    <div class="bento-card sr tilt-target">
+      <div class="bento-icon" style="background:rgba(198,255,0,0.12); color:#C6FF00; border:1px solid rgba(198,255,0.3)">🎨</div>
+      <div class="bento-title title-hover" data-title="100% Custom Design">100% Custom Design</div>
+      <div class="bento-desc">No Figma templates, no recycled layouts. Our designers study your brand and build something unmistakably yours.</div>
+    </div>
+    <div class="bento-card sr tilt-target">
+      <div class="bento-icon" style="background:rgba(255,0,127,0.12); color:#FF007F; border:1px solid rgba(255,0,127,0.3)">⚡</div>
+      <div class="bento-title title-hover" data-title="Live in 14 Days">Live in 14 Days</div>
+      <div class="bento-desc">Design and development run in parallel. From contract to deployment in 10–14 days — guaranteed. No endless revision loops.</div>
+    </div>
+    <div class="bento-card sr tilt-target">
+      <div class="bento-icon" style="background:rgba(16,185,129,0.12); color:#10B981; border:1px solid rgba(16,185,129,0.3)">🛡️</div>
+      <div class="bento-title title-hover" data-title="3-Month Free Maintenance">3-Month Free Maintenance</div>
+      <div class="bento-desc">Everyone else ghosts you after launch. We stay. Bugs fixed, content updated, performance tuned — free for 90 days.</div>
+    </div>
+    <div class="bento-card wide sr tilt-target">
+      <div class="bento-icon" style="background:rgba(74,108,247,0.12); color:#4A6CF7; border:1px solid rgba(74,108,247,0.3)">📱</div>
+      <div class="bento-title title-hover" data-title="Mobile-First, Always">Mobile-First, Always</div>
+      <div class="bento-desc">60% of your users are on phones. Every pixel is designed mobile-first, then scaled up — not squished down from a desktop version as an afterthought.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ AI AGENT ══════════ -->
+<section class="agent" id="agent">
+  <div class="agent-info">
+    <p class="section-label sr" style="color:#C6FF00">Growth Plan Exclusive</p>
+    <h2 class="sr title-hover" data-title="Your website works. Your AI calling agent never stops.">Your website works.<br/>Your <em>AI calling agent</em><br/>never stops.</h2>
+    <p class="sr">Upgrade to Growth and get a fully functional AI voice agent that calls your leads automatically — even at 2am on a Sunday. It qualifies, follows up, and books appointments so you wake up with filled calendars.</p>
+    <div class="agent-tags sr">
+      <span class="agent-tag">24/7 lead calls</span><span class="agent-tag">Automatic follow-up</span>
+      <span class="agent-tag">Appointment booking</span><span class="agent-tag">Lead qualification</span>
+      <span class="agent-tag">CRM sync</span>
+    </div>
+  </div>
+  <div class="agent-panel tilt-target sr">
+    <div class="agent-panel-head"><span class="agent-pulse"></span> AI Agent · Active Now</div>
+    <div class="agent-feat">
+      <div class="agent-feat-icon">📞</div>
+      <div><h4 class="title-hover" data-title="Calls leads the moment they submit">Calls leads the moment they submit</h4><p>Instant outbound call triggered the second a form is filled — while the lead is still warm.</p></div>
+    </div>
+    <div class="agent-feat">
+      <div class="agent-feat-icon">🌙</div>
+      <div><h4 class="title-hover" data-title="Works when you're closed or asleep">Works when you're closed or asleep</h4><p>No hours. No holidays. If a lead comes in at midnight, the agent calls at midnight.</p></div>
+    </div>
+    <div class="agent-feat">
+      <div class="agent-feat-icon">🗓️</div>
+      <div><h4 class="title-hover" data-title="Books appointments automatically">Books appointments automatically</h4><p>Syncs to your calendar. Qualified leads land directly in your schedule — no manual follow-up.</p></div>
+    </div>
+    <div class="agent-feat">
+      <div class="agent-feat-icon">📊</div>
+      <div><h4 class="title-hover" data-title="Full call logs and transcripts">Full call logs and transcripts</h4><p>Every conversation is recorded and logged. Know exactly what was said and where leads dropped off.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROCESS ══════════ -->
+<section class="process" id="process">
+  <p class="section-label sr">The Process</p>
+  <h2 class="section-title sr title-hover" data-title="From idea to live in 4 clear steps.">From idea to live<br/><em>in 4 clear steps.</em></h2>
+  <p class="sr" style="margin-top:14px;color:var(--text-secondary);font-size:16px;line-height:1.7">No surprises, no scope creep. You know exactly what happens and when.</p>
+  <div class="process-grid">
+    <div class="process-card tilt-target sr">
+      <div class="process-num">01</div>
+      <p class="process-phase">Day 1</p>
+      <h3 class="process-name title-hover" data-title="Discovery Call">Discovery Call</h3>
+      <p class="process-desc">30 minutes. We dig into your product, your users, and your goals. We ask the questions other studios skip because they're already copying a template.</p>
+    </div>
+    <div class="process-card tilt-target sr">
+      <div class="process-num">02</div>
+      <p class="process-phase">Days 2–5</p>
+      <h3 class="process-name title-hover" data-title="Custom Design">Custom Design</h3>
+      <p class="process-desc">Figma mockups built from scratch around your brand. We present 2 directions, you pick one, we refine. No templates — ever.</p>
+    </div>
+    <div class="process-card tilt-target sr">
+      <div class="process-num">03</div>
+      <p class="process-phase">Days 5–12</p>
+      <h3 class="process-name title-hover" data-title="Secure Build">Secure Build</h3>
+      <p class="process-desc">OWASP-compliant code, full cross-browser testing, performance optimization. Security baked in from line one.</p>
+    </div>
+    <div class="process-card tilt-target sr">
+      <div class="process-num">04</div>
+      <p class="process-phase">Day 14+</p>
+      <h3 class="process-name title-hover" data-title="Launch + 90-Day Support">Launch + 90-Day Support</h3>
+      <p class="process-desc">We deploy, monitor, and support your site for 3 months post-launch — free. You focus on growing. We handle everything else.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MAINTENANCE BANNER ══════════ -->
+<section class="maint-section" id="maintenance">
+  <div class="maint-inner sr">
+    <div class="maint-left">
+      <p class="maint-eyebrow">Nobody Else Does This ✦</p>
+      <h2 class="maint-title title-hover" data-title="3 Months of Free Post-Launch Maintenance. Zero Asterisks.">3 Months of Free Post-Launch<br/><em>Maintenance.</em> Zero Asterisks.</h2>
+      <p class="maint-desc">Every agency ghosts you after launch day. We stay. Bugs fixed, content updated, performance tuned — all included in your project fee. No retainer, no fine print, no hourly billing.</p>
+      <div class="maint-pills">
+        <span class="agent-tag light">Bug fixes</span><span class="agent-tag light">Content updates</span>
+        <span class="agent-tag light">Performance tuning</span><span class="agent-tag light">Security patches</span>
+        <span class="agent-tag light">48hr response</span>
+      </div>
+    </div>
+    <a href="#contact" class="maint-btn nav-link-hover">Claim Your Spot →</a>
+  </div>
+</section>
+
+<!-- ══════════ PRICING ══════════ -->
+<section class="pricing" id="pricing">
+  <div class="pricing-header">
+    <div>
+      <p class="section-label sr">Pricing</p>
+      <h2 class="section-title sr title-hover" data-title="Transparent pricing. No surprise invoices.">Transparent pricing.<br/><em>No surprise invoices.</em></h2>
+    </div>
+    <div class="sr">
+      <div class="currency-switch">
+        <button class="curr-btn" id="btn-usd">USD</button>
+        <button class="curr-btn" id="btn-inr">INR</button>
+      </div>
+      <span class="geo-note" id="geo-note">Detecting region...</span>
+    </div>
+  </div>
+  <div class="pricing-grid">
+    <!-- Starter -->
+    <div class="price-card tilt-target sr">
+      <p class="price-tier">Starter</p>
+      <div class="price-amount"><span class="sym curr-sym">$</span><span id="p-starter">1,500</span></div>
+      <p class="price-period">one-time project fee</p>
+      <p class="price-desc">Perfect for MVPs, landing pages, and small business sites</p>
+      <div class="price-divider"></div>
+      <ul class="price-list">
+        <li><span class="chk">✓</span>Up to 5 pages</li>
+        <li><span class="chk">✓</span>Custom design (no templates)</li>
+        <li><span class="chk">✓</span>Mobile-first responsive</li>
+        <li><span class="chk">✓</span>Security hardening</li>
+        <li><span class="chk">✓</span>3 months free maintenance</li>
+        <li><span class="chk">✓</span>14-day delivery</li>
+        <li><span class="chk">✓</span>Contact form + integrations</li>
+      </ul>
+      <a href="#contact" class="price-action outline nav-link-hover">Get Started →</a>
+    </div>
+    <!-- Growth -->
+    <div class="price-card featured tilt-target sr">
+      <span class="price-badge">BEST VALUE</span>
+      <p class="price-tier">Growth</p>
+      <div class="price-amount"><span class="sym curr-sym">$</span><span id="p-growth">3,000</span></div>
+      <p class="price-period">one-time project fee</p>
+      <p class="price-desc">Full web app, backend, integrations, and AI calling agent</p>
+      <div class="price-divider"></div>
+      <ul class="price-list">
+        <li><span class="chk">✓</span>Everything in Starter</li>
+        <li><span class="chk">✓</span>Unlimited pages</li>
+        <li><span class="chk">✓</span>Full-stack web application</li>
+        <li><span class="chk">✓</span>CMS / Admin dashboard</li>
+        <li><span class="chk">✓</span>API integrations (Stripe, CRM)</li>
+        <li><span class="chk">✓</span>Advanced security audit</li>
+        <li><span class="chk">✓</span>Priority support</li>
+        <li><span class="chk highlight">✓</span><strong>AI calling agent — works 24/7</strong></li>
+        <li><span class="chk">✓</span>Auto lead calls + appointment booking</li>
+      </ul>
+      <a href="#contact" class="price-action solid nav-link-hover">Get Started →</a>
+    </div>
+  </div>
+  <!-- Support -->
+  <div class="support-row sr">
+    <div style="grid-column:1/-1;margin-bottom:8px">
+      <h3 class="title-hover" data-title="After Your 3-Month Free Period" style="font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--text-primary)">After Your 3-Month Free Period</h3>
+      <p style="font-size:14px;color:var(--text-secondary);margin-top:4px">Need us to stick around longer? Simple, flat rates — no retainers, no contracts.</p>
+    </div>
+    <div class="support-block">
+      <div class="support-icon">🛠️</div>
+      <div>
+        <h4 class="title-hover" data-title="Ongoing Support">Ongoing Support</h4>
+        <div class="support-val"><span class="curr-sym">$</span><span id="p-support">100</span><span style="font-size:14px;font-weight:400;color:var(--text-muted)">/month</span></div>
+        <p>Bug fixes, content updates, performance issues, security patches — fast 48hr response.</p>
+      </div>
+    </div>
+    <div class="support-block">
+      <div class="support-icon">🚀</div>
+      <div>
+        <h4 class="title-hover" data-title="Feature Upgrades">Feature Upgrades</h4>
+        <div class="support-val"><span class="curr-sym">$</span><span id="p-upgrade">200</span><span style="font-size:14px;font-weight:400;color:var(--text-muted)">/session</span></div>
+        <p>New features, redesigns, new integrations, or significant upgrades — scoped and delivered.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA / CONTACT ══════════ -->
+<section class="cta" id="contact">
+  <div class="cta-box sr">
+    <h2 class="cta-title title-hover" data-title="Your site should be your best salesperson">Your site should be your<br/>best salesperson</h2>
+    <p class="cta-sub">Leave your details below and we'll reach out to schedule your free discovery call.</p>
+    <form class="contact-form" id="booking-form">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New Call Booking Request!">
+      <div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your full name" required class="form-input"/></div>
+      <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required class="form-input"/></div>
+      <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="+1 (555) 000-0000" required class="form-input"/></div>
+      <button type="submit" class="form-submit nav-link-hover" id="submit-btn">Book a Free Call →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="#00E5FF" stroke-width="2.5" fill="rgba(0,229,255,0.1)"/>
+        <path d="M16 4V16M16 16L28 22M16 16L4 22" stroke="#C6FF00" stroke-width="2"/>
+        <circle cx="16" cy="16" r="3" fill="#00E5FF"/>
+      </svg>
+    </div>
+    <div class="logo-name">Web<span>Arch</span></div>
+  </a>
+  <ul class="footer-links"><li><a href="#features">Services</a></li><li><a href="#agent">AI Agent</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li></ul>
+  <p class="footer-copy">© 2026 WebArch. All rights reserved.</p>
+</footer>
+
+</div><!-- end #app -->
+
+</body>
+</html>
