@@ -39,25 +39,25 @@
 }
 
 [data-theme="night"] {
-  /* Night Mode (The "Deep-Glitch") */
-  --bg-deep: #0D0D0D;
-  --bg-surface: #141414;
-  --text-primary: #00FF00;
-  --text-secondary: #00EA00;
-  --text-muted: #00BA00;
+  /* Night Mode (The "Void-Fire") */
+  --bg-deep: #1A0033;
+  --bg-surface: #26004D;
+  --text-primary: #FF4500;
+  --text-secondary: #FF6A33;
+  --text-muted: #CC3700;
 
-  /* Cyber Glitch Accents */
-  --cyan: #00FFFF;   /* Cyan Glow */
-  --lime: #FFFF00;   /* Warning Yellow */
-  --pink: #FF00FF;   /* Hot Magenta */
-  --cobalt: #00FFFF;
+  /* Void-Fire Accents */
+  --cyan: #00FF7F;   /* Spring Green Accent 1 */
+  --lime: #FFFF00;   /* Electric Yellow Highlight/CTA */
+  --pink: #FF00FF;   /* Magenta Accent 2 */
+  --cobalt: #00FF7F;
   --violet: #FF00FF;
 
-  /* Matrix Glassmorphism */
-  --glass-bg: rgba(13, 13, 13, 0.92);
-  --glass-border: #00FF00;
-  --glass-shadow: 0 0 35px rgba(0, 255, 0, 0.35), 0 10px 40px rgba(0, 0, 0, 0.8);
-  --card-hover-shadow: 0 0 55px rgba(0, 255, 255, 0.7), 0 0 90px rgba(255, 0, 255, 0.5), 0 20px 50px rgba(0, 0, 0, 0.95);
+  /* Void-Fire Glassmorphism */
+  --glass-bg: rgba(26, 0, 51, 0.92);
+  --glass-border: #00FF7F;
+  --glass-shadow: 0 0 35px rgba(0, 255, 127, 0.35), 0 10px 40px rgba(0, 0, 0, 0.8);
+  --card-hover-shadow: 0 0 55px rgba(255, 255, 0, 0.7), 0 0 90px rgba(255, 0, 255, 0.6), 0 20px 50px rgba(26, 0, 51, 0.95);
 }
 
 html {
