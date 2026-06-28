@@ -33,7 +33,7 @@ export async function initPreloader() {
 
       if (preloaderVideo) preloaderVideo.pause();
       if (fillBar) fillBar.style.width = '100%';
-      if (loadText) loadText.textContent = 'SYSTEMS ONLINE [ 100% ]';
+      if (loadText) loadText.textContent = 'INITIALIZING [ 100% ]';
 
       setTimeout(() => {
         preloader.classList.add('loaded');
@@ -144,7 +144,7 @@ export async function initPreloader() {
       }
 
       if (fillBar) fillBar.style.width = `${progress}%`;
-      if (loadText) loadText.textContent = `INITIALIZING GOD-TIER ENGINE [ ${progress}% ]`;
+      if (loadText) loadText.textContent = `INITIALIZING [ ${progress}% ]`;
 
       if (crystal && renderer && scene && camera) {
         crystal.rotation.y += 0.03;
