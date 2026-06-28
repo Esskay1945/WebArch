@@ -6,22 +6,44 @@
  */
 
 export function initTheme() {
-  function applyTimeTheme() {
-    const hours = new Date().getHours();
-    // 6 AM to 6 PM is Day mode, otherwise Night mode
-    const isDay = hours >= 6 && hours < 18;
-    const theme = isDay ? 'day' : 'night';
+  function updateThemeUI(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    
-    // Update theme-color meta tag for browsers
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
-      metaTheme.setAttribute('content', isDay ? '#FFF000' : '#0D0D0D');
+      metaTheme.setAttribute('content', theme === 'day' ? '#FFF000' : '#0D0D0D');
+    }
+    const icon = document.getElementById('theme-icon');
+    if (icon) {
+      icon.textContent = theme === 'day' ? '🌙' : '☀️';
     }
   }
 
-  applyTimeTheme();
+  function applyTimeTheme() {
+    const saved = localStorage.getItem('webarch_theme');
+    if (saved) {
+      updateThemeUI(saved);
+      return;
+    }
+    const hours = new Date().getHours();
+    const isDay = hours >= 6 && hours < 18;
+    updateThemeUI(isDay ? 'day' : 'night');
+  }
 
-  // Check every minute to handle transitions seamlessly
+  applyTimeTheme();
   setInterval(applyTimeTheme, 60000);
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('DOMContentLoaded', () => {
+      applyTimeTheme(); // ensure icon is set once DOM is loaded
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme') || 'day';
+          const next = current === 'day' ? 'night' : 'day';
+          localStorage.setItem('webarch_theme', next);
+          updateThemeUI(next);
+        });
+      }
+    });
+  }
 }

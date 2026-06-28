@@ -21,20 +21,30 @@ function splitTextNodes(el) {
       if (!text) return;
       
       const fragment = document.createDocumentFragment();
-      for (let char of text) {
-        if (char === ' ' || char === '\n' || char === '\t') {
-          fragment.appendChild(document.createTextNode(char));
+      const tokens = text.match(/\S+|\s+/g) || [];
+      
+      tokens.forEach(token => {
+        if (/^\s+$/.test(token)) {
+          fragment.appendChild(document.createTextNode(token));
         } else {
-          const span = document.createElement('span');
-          span.className = 'char-span';
-          span.textContent = char;
-          fragment.appendChild(span);
+          const wordSpan = document.createElement('span');
+          wordSpan.className = 'word-span';
+          wordSpan.style.display = 'inline-block';
+          wordSpan.style.whiteSpace = 'nowrap';
+          
+          for (let char of token) {
+            const span = document.createElement('span');
+            span.className = 'char-span';
+            span.textContent = char;
+            wordSpan.appendChild(span);
+          }
+          fragment.appendChild(wordSpan);
         }
-      }
+      });
+      
       node.replaceWith(fragment);
     } else if (node.nodeType === Node.ELEMENT_NODE) {
-      // Don't recursively split script or style tags if any exist
-      if (node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+      if (node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE' && !node.classList.contains('word-span')) {
         splitTextNodes(node);
       }
     }
