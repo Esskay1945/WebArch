@@ -39,25 +39,25 @@
 }
 
 [data-theme="night"] {
-  /* Night Mode (The "Void-Fire") */
-  --bg-deep: #1A0033;
-  --bg-surface: #26004D;
-  --text-primary: #FF4500;
-  --text-secondary: #FF6A33;
-  --text-muted: #CC3700;
+  /* Night Mode (Surreal 3D Neon) */
+  --bg-deep: #050505;
+  --bg-surface: #0E0E12;
+  --text-primary: #E0E0E0;
+  --text-secondary: #B0B0B8;
+  --text-muted: #808088;
 
-  /* Void-Fire Accents */
-  --cyan: #00FF7F;   /* Spring Green Accent 1 */
-  --lime: #FFFF00;   /* Electric Yellow Highlight/CTA */
-  --pink: #FF00FF;   /* Magenta Accent 2 */
-  --cobalt: #00FF7F;
-  --violet: #FF00FF;
+  /* Surreal Neon Accents */
+  --cyan: #00FF9F;   /* Hyper-Neon Mint (The Data) */
+  --lime: #FF006E;   /* Laser-Light Pink (Highlight/CTA) */
+  --pink: #7000FF;   /* Electric Deep Violet (The Glow) */
+  --cobalt: #00FF9F;
+  --violet: #7000FF;
 
-  /* Void-Fire Glassmorphism */
-  --glass-bg: rgba(26, 0, 51, 0.92);
-  --glass-border: #00FF7F;
-  --glass-shadow: 0 0 35px rgba(0, 255, 127, 0.35), 0 10px 40px rgba(0, 0, 0, 0.8);
-  --card-hover-shadow: 0 0 55px rgba(255, 255, 0, 0.7), 0 0 90px rgba(255, 0, 255, 0.6), 0 20px 50px rgba(26, 0, 51, 0.95);
+  /* Glassmorphism */
+  --glass-bg: rgba(5, 5, 5, 0.92);
+  --glass-border: #7000FF;
+  --glass-shadow: 0 0 35px rgba(112, 0, 255, 0.4), 0 10px 40px rgba(0, 0, 0, 0.8);
+  --card-hover-shadow: 0 0 55px rgba(0, 255, 159, 0.7), 0 0 90px rgba(255, 0, 110, 0.6), 0 20px 50px rgba(5, 5, 5, 0.95);
 }
 
 html {

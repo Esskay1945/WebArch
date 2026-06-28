@@ -10,7 +10,7 @@ export function initTheme() {
     document.documentElement.setAttribute('data-theme', theme);
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
-      metaTheme.setAttribute('content', theme === 'day' ? '#FFF000' : '#1A0033');
+      metaTheme.setAttribute('content', theme === 'day' ? '#FFF000' : '#050505');
     }
     const icon = document.getElementById('theme-icon');
     if (icon) {
