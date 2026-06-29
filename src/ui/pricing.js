@@ -4,6 +4,8 @@
  * Uses timezone, locale, and robust HTTPS GeoIP fallback
  */
 
+import { getUserRegion } from './geo.js';
+
 const PRICES = {
   'stat-price': { usd: '1,500', inr: '15,000' },
   'p-starter':  { usd: '1,500', inr: '15,000' },
@@ -13,91 +15,20 @@ const PRICES = {
 };
 
 export function initPricing() {
-  detectLocation().then((isIndia) => {
-    updateCurrency(isIndia);
+  getUserRegion().then((region) => {
+    updateCurrency(region.isIndia, region);
   });
 }
 
-async function detectLocation() {
-  // Method 1: Check timezone
-  try {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-    if (tz.includes('Kolkata') || tz.includes('Calcutta') || tz.includes('India')) {
-      return true;
-    }
-  } catch (e) {
-    // Timezone detection failed
-  }
-
-  // Method 2: Check browser languages
-  try {
-    const languages = navigator.languages || [navigator.language || navigator.userLanguage || ''];
-    for (const lang of languages) {
-      const l = lang.toLowerCase();
-      if (
-        l.endsWith('-in') ||
-        l === 'hi' || l === 'bn' || l === 'te' || l === 'mr' ||
-        l === 'ta' || l === 'gu' || l === 'kn' || l === 'ml' || l === 'pa'
-      ) {
-        return true;
-      }
-    }
-  } catch (e) {
-    // Locale detection failed
-  }
-
-  // Method 3: GeoIP fallback (api.country.is supports free HTTPS & CORS)
-  try {
-    const response = await fetch('https://api.country.is/', {
-      signal: AbortSignal.timeout(4000),
-    });
-    if (response.ok) {
-      const data = await response.json();
-      if (data.country === 'IN') {
-        return true;
-      }
-    }
-  } catch (e) {
-    // api.country.is failed — try ipapi.co
-    try {
-      const response = await fetch('https://ipapi.co/json/', {
-        signal: AbortSignal.timeout(4000),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        if (data.country_code === 'IN' || data.country === 'India') {
-          return true;
-        }
-      }
-    } catch (e2) {
-      // ipapi.co failed — try ipinfo.io
-      try {
-        const response = await fetch('https://ipinfo.io/json', {
-          signal: AbortSignal.timeout(4000),
-        });
-        if (response.ok) {
-          const data = await response.json();
-          if (data.country === 'IN') {
-            return true;
-          }
-        }
-      } catch (e3) {
-        // All detection failed
-      }
-    }
-  }
-
-  // Default to USD
-  return false;
-}
-
-function updateCurrency(isIndia) {
+function updateCurrency(isIndia, region = null) {
   const symbol = isIndia ? '₹' : '$';
 
   // Update geo note
   const geoNote = document.getElementById('geo-note');
   if (geoNote) {
-    geoNote.textContent = isIndia ? '📍 Regional Pricing: INR (₹)' : '📍 Global Pricing: USD ($)';
+    const countryName = region ? region.name : (isIndia ? 'India' : 'Global');
+    const flag = region ? region.flag : (isIndia ? '🇮🇳' : '📍');
+    geoNote.textContent = isIndia ? `${flag} Regional Pricing (${countryName}): INR (₹)` : `${flag} Global Pricing (${countryName}): USD ($)`;
   }
 
   // Update all currency symbols (.curr-sym in index.html)

@@ -83,7 +83,7 @@
 <section class="hero" id="hero">
   <div class="hero-badge" id="hero-badge"><span class="hero-dot"></span>Now onboarding — 3 spots left this month</div>
   <h1 id="hero-h1" class="title-hover" data-title="Websites That Convert, Not Just Look Pretty">Websites That <span class="gradient-text">Convert</span>,<br/>Not Just Look Pretty</h1>
-  <p class="hero-sub" id="hero-sub">Custom-built web apps for US founders and small businesses. No templates, no agencies, no bloat — and 3 months of free maintenance included.</p>
+  <p class="hero-sub" id="hero-sub" data-usd="Custom-built web apps for US founders and small businesses. No templates, no agencies, no bloat — and 3 months of free maintenance included." data-inr="Custom-built web apps for Indian founders and fast-growing brands. No templates, no agencies, no bloat — and 3 months of free maintenance included.">Custom-built web apps for US founders and small businesses. No templates, no agencies, no bloat — and 3 months of free maintenance included.</p>
   <div class="hero-ctas" id="hero-ctas">
     <a href="#contact" class="btn-primary nav-link-hover">Start Your Project →</a>
     <a href="#features" class="btn-ghost nav-link-hover">See What We Build</a>
@@ -104,11 +104,11 @@
   <div class="marquee-track">
     <span class="marquee-item">Custom Design</span><span class="marquee-item">Bank-Grade Security</span>
     <span class="marquee-item">3-Month Free Maintenance</span><span class="marquee-item">No Templates</span>
-    <span class="marquee-item">14-Day Delivery</span><span class="marquee-item">US-Based Clients</span>
+    <span class="marquee-item">14-Day Delivery</span><span class="marquee-item" data-usd="US-Based Clients" data-inr="Global & India Clients">US-Based Clients</span>
     <span class="marquee-item">AI Calling Agent</span><span class="marquee-item">Post-Launch Support</span>
     <span class="marquee-item">Custom Design</span><span class="marquee-item">Bank-Grade Security</span>
     <span class="marquee-item">3-Month Free Maintenance</span><span class="marquee-item">No Templates</span>
-    <span class="marquee-item">14-Day Delivery</span><span class="marquee-item">US-Based Clients</span>
+    <span class="marquee-item">14-Day Delivery</span><span class="marquee-item" data-usd="US-Based Clients" data-inr="Global & India Clients">US-Based Clients</span>
     <span class="marquee-item">AI Calling Agent</span><span class="marquee-item">Post-Launch Support</span>
   </div>
 </div>
@@ -121,7 +121,7 @@
     <div class="bento-card wide sr tilt-target">
       <div class="bento-icon" style="background:rgba(0,229,255,0.12); color:#00E5FF; border:1px solid rgba(0,229,255,0.3)">💸</div>
       <div class="bento-title title-hover" data-title="Half the Agency Price">Half the Agency Price</div>
-      <div class="bento-desc">Most agencies quote $8K–$20K for what we do starting at $1,500. No account managers, no middlemen — you pay for craft, not overhead.</div>
+      <div class="bento-desc" data-usd="Most agencies quote $8K–$20K for what we do starting at $1,500. No account managers, no middlemen — you pay for craft, not overhead." data-inr="Most agencies quote ₹80,000–₹2,00,000 for what we do starting at ₹15,000. No account managers, no middlemen — you pay for craft, not overhead.">Most agencies quote $8K–$20K for what we do starting at $1,500. No account managers, no middlemen — you pay for craft, not overhead.</div>
     </div>
     <div class="bento-card sr tilt-target">
       <div class="bento-icon" style="background:rgba(139,92,246,0.12); color:#8B5CF6; border:1px solid rgba(139,92,246,0.3)">🔒</div>
@@ -321,7 +321,17 @@
       <input type="hidden" name="_subject" value="New Call Booking Request!">
       <div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your full name" required class="form-input"/></div>
       <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required class="form-input"/></div>
-      <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="+1 (555) 000-0000" required class="form-input"/></div>
+      <div class="form-group">
+        <label for="phone-input">Phone</label>
+        <div class="phone-input-container">
+          <div class="phone-prefix-badge" id="phone-prefix-badge" title="Detected Country">
+            <span id="phone-flag">🌐</span>
+            <span id="phone-code">+1</span>
+          </div>
+          <input type="tel" id="phone-input" placeholder="(555) 000-0000" required class="form-input phone-input-with-badge" autocomplete="tel"/>
+          <input type="hidden" name="phone" id="phone-hidden"/>
+        </div>
+      </div>
       <button type="submit" class="form-submit nav-link-hover" id="submit-btn">Book a Free Call →</button>
     </form>
   </div>
