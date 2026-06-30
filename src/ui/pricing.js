@@ -1,17 +1,17 @@
 /**
- * Pricing — Geo-Based Currency Detection & Toggle
- * India → INR (₹), All other countries → USD ($)
+ * Pricing — Geo-Based Currency & Worldwide Founder Support
+ * India → INR (₹), All other countries worldwide → USD ($)
  * Uses timezone, locale, and robust HTTPS GeoIP fallback
  */
 
 import { getUserRegion } from './geo.js';
 
 const PRICES = {
-  'stat-price': { usd: '1,500', inr: '15,000' },
-  'p-starter':  { usd: '1,500', inr: '15,000' },
-  'p-growth':   { usd: '3,000', inr: '25,000' },
-  'p-support':  { usd: '100',   inr: '2,000' },
-  'p-upgrade':  { usd: '200',   inr: '5,000' }
+  'stat-price': { usd: '1,500', inr: '14,999' },
+  'p-starter':  { usd: '1,500', inr: '14,999' },
+  'p-growth':   { usd: '3,000', inr: '24,999' },
+  'p-support':  { usd: '100',   inr: '1,999' },
+  'p-upgrade':  { usd: '200',   inr: '4,999' }
 };
 
 export function initPricing() {
@@ -26,9 +26,11 @@ function updateCurrency(isIndia, region = null) {
   // Update geo note
   const geoNote = document.getElementById('geo-note');
   if (geoNote) {
-    const countryName = region ? region.name : (isIndia ? 'India' : 'Global');
-    const flag = region ? region.flag : (isIndia ? '🇮🇳' : '📍');
-    geoNote.textContent = isIndia ? `${flag} Regional Pricing (${countryName}): INR (₹)` : `${flag} Global Pricing (${countryName}): USD ($)`;
+    const countryName = region ? region.name : (isIndia ? 'India' : 'Worldwide');
+    const flag = region ? region.flag : (isIndia ? '🇮🇳' : '🌐');
+    geoNote.textContent = isIndia 
+      ? `${flag} Regional Pricing (${countryName}): Supporting all Indian founders with localized INR (₹) rates.`
+      : `${flag} Global Pricing (${countryName}): Supporting founders across US, UK, Australia & 100+ regions worldwide.`;
   }
 
   // Update all currency symbols (.curr-sym in index.html)
