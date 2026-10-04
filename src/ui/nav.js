@@ -1,79 +1,32 @@
-/**
- * Navigation Controller
- * Scroll-aware nav with hide/show, mobile menu toggle
- */
-
 export function initNav() {
-  const nav = document.getElementById('main-nav');
-  const mobileToggle = document.getElementById('mobile-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  if (!nav) return;
-
-  let lastScrollY = 0;
-  let ticking = false;
-
-  // ── Scroll handling ──
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-
-        // Add scrolled class for background
-        nav.classList.toggle('scrolled', scrollY > 50);
-
-        // Hide/show on scroll direction
-        if (scrollY > lastScrollY && scrollY > 200) {
-          nav.classList.add('hidden');
-        } else {
-          nav.classList.remove('hidden');
-        }
-
-        lastScrollY = scrollY;
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-
-  // ── Mobile Menu ──
-  if (mobileToggle && mobileMenu) {
-    mobileToggle.addEventListener('click', () => {
-      const isActive = mobileToggle.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      mobileToggle.setAttribute('aria-expanded', isActive);
-      document.body.style.overflow = isActive ? 'hidden' : '';
-    });
-
-    // Close mobile menu on link click
-    mobileMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileToggle.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        mobileToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
-    });
+  const toggle = document.querySelector(".menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const mobile = window.matchMedia("(max-width: 700px)");
+  function setOpen(open, returnFocus = false) {
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute(
+      "aria-label",
+      open ? "Close navigation" : "Open navigation",
+    );
+    menu.hidden = !open;
+    if (returnFocus) toggle.focus();
   }
-
-  // ── Active link highlighting ──
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = nav.querySelectorAll('.nav-links a');
-
-  const linkObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach((link) => {
-            const isActive = link.getAttribute('href') === `#${id}`;
-            link.style.color = isActive ? 'var(--accent)' : '';
-          });
-        }
-      });
-    },
-    { threshold: 0.3, rootMargin: '-100px 0px -50% 0px' }
+  toggle.addEventListener("click", () =>
+    setOpen(toggle.getAttribute("aria-expanded") !== "true"),
   );
-
-  sections.forEach((s) => linkObserver.observe(s));
+  menu
+    .querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !menu.hidden) setOpen(false, true);
+  });
+  document.addEventListener("click", (event) => {
+    if (!menu.hidden && !event.target.closest(".site-header")) setOpen(false);
+  });
+  document.addEventListener("focusin", (event) => {
+    if (!menu.hidden && !event.target.closest(".site-header")) setOpen(false);
+  });
+  mobile.addEventListener("change", () => {
+    if (!mobile.matches) setOpen(false);
+  });
 }
