@@ -1,413 +1,1047 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>WebArch — Custom Website Development for Startups & Small Businesses Worldwide</title>
-  <meta name="description" content="Done-for-you custom website development agency for international founders across US, UK, Australia, India & global markets. No templates, fast 14-day delivery, and 3 months free post-launch support included."/>
-  <meta property="og:title" content="WebArch — Custom Website Development for Startups & Fast-Growing Brands"/>
-  <meta property="og:description" content="Done-for-you website development agency for international founders worldwide. No templates, 14-day delivery, and 3 months free post-launch support included."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://webarch.me/"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="WebArch — Custom Website Development for Startups & Fast-Growing Brands"/>
-  <meta name="twitter:description" content="Done-for-you website development agency for international founders worldwide. No templates, 14-day delivery, and 3 months free post-launch support included."/>
-  <meta name="theme-color" content="#E6A100"/>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/src/style.css"/>
-</head>
-<body>
-
-<!-- PRELOADER -->
-<div id="preloader">
-  <video id="preloader-video" autoplay muted playsinline class="preloader-video">
-    <source src="./2.mp4" type="video/mp4">
-    <source src="./init.mp4" type="video/mp4">
-    <source src="2.mp4" type="video/mp4">
-    <source src="init.mp4" type="video/mp4">
-  </video>
-  <canvas id="preloader-canvas" width="200" height="200"></canvas>
-  <div class="load-bar-track"><div class="load-bar" id="load-bar"></div></div>
-  <div class="load-text" id="load-text">INITIALIZING [ 0% ]</div>
-  <div class="skip-hint">[ CLICK ANYWHERE TO SKIP ]</div>
-</div>
-
-<!-- SKY BACKGROUND -->
-<div id="sky-background"></div>
-
-<!-- THREE.JS CANVAS -->
-<canvas id="three-canvas"></canvas>
-
-<!-- ════════════════════════════════════
-     MAIN APP
-     ════════════════════════════════════ -->
-<div id="app">
-
-<!-- NAV -->
-<nav class="nav" id="main-nav">
-  <a href="#" class="logo">
-    <div class="logo-icon">
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="url(#logo-grad)" stroke-width="2.5" fill="rgba(0,229,255,0.1)"/>
-        <path d="M16 4V16M16 16L28 22M16 16L4 22" stroke="#C6FF00" stroke-width="2"/>
-        <circle cx="16" cy="16" r="3" fill="#00E5FF"/>
-        <defs>
-          <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#00E5FF"/>
-            <stop offset="100%" stop-color="#8B5CF6"/>
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-    <div class="logo-name">Web<span>Arch</span></div>
-  </a>
-  <ul class="nav-menu">
-    <li><a href="#features" class="nav-link-hover">What We Build</a></li>
-    <li><a href="#agent" class="nav-link-hover">AI Agent</a></li>
-    <li><a href="#process" class="nav-link-hover">Process</a></li>
-    <li><a href="#pricing" class="nav-link-hover">Pricing</a></li>
-    <li><a href="#faq" class="nav-link-hover">FAQ</a></li>
-  </ul>
-  <div style="display:flex; align-items:center; gap:12px;">
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Theme">
-      <span id="theme-icon">🌙</span>
-    </button>
-    <a href="#contact" class="nav-cta nav-link-hover">Book a Free Call →</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<div class="mobile-panel" id="mobile-panel">
-  <a href="#features">What We Build</a>
-  <a href="#agent">AI Agent</a>
-  <a href="#process">Process</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#faq">FAQ</a>
-  <a href="#contact">Book a Call</a>
-</div>
-
-<!-- ══════════ HERO ══════════ -->
-<section class="hero" id="hero">
-  <div class="hero-badge" id="hero-badge"><span class="hero-dot"></span>Done-For-You Website Development — Supporting Founders Worldwide</div>
-  <h1 id="hero-h1" class="title-hover" data-title="Custom Websites Built for Startups That Convert">Custom Websites Built for <span class="gradient-text">Startups</span><br/>That Convert</h1>
-  <p class="hero-sub" id="hero-sub" data-usd="Premier custom web development agency for technical & non-technical founders across US, UK, Australia & worldwide. No templates, fast delivery, and 3 months of free post-launch support included." data-inr="Premier custom web development agency for Indian founders & global brands. Done-for-you website development with no templates, fast delivery, and 3 months of free post-launch support included.">Premier custom web development agency for technical & non-technical founders across US, UK, Australia & worldwide. No templates, fast delivery, and 3 months of free post-launch support included.</p>
-  <div class="hero-ctas" id="hero-ctas">
-    <a href="#contact" class="btn-primary nav-link-hover">Start Your Project →</a>
-    <a href="#features" class="btn-ghost nav-link-hover">See What We Build</a>
-  </div>
-  <div class="hero-stats" id="hero-stats">
-    <div class="stat-block"><div class="stat-val"><span class="curr-sym">$</span><span id="stat-price">1,500</span></div><div class="stat-lbl">Starting price</div></div>
-    <div class="stat-divider"></div>
-    <div class="stat-block"><div class="stat-val">14<span>d</span></div><div class="stat-lbl">Fast delivery</div></div>
-    <div class="stat-divider"></div>
-    <div class="stat-block"><div class="stat-val">3<span>mo</span></div><div class="stat-lbl">Free support</div></div>
-    <div class="stat-divider"></div>
-    <div class="stat-block"><div class="stat-val">100<span>%</span></div><div class="stat-lbl">Custom built</div></div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span class="marquee-item">Done-For-You Website Development</span><span class="marquee-item">Bank-Grade Security</span>
-    <span class="marquee-item">3-Month Free Support</span><span class="marquee-item">No Templates</span>
-    <span class="marquee-item">Fast Website Delivery</span><span class="marquee-item" data-usd="Worldwide Founders" data-inr="Global & India Clients">Worldwide Founders</span>
-    <span class="marquee-item">AI Calling Agent</span><span class="marquee-item">Affordable Web Design</span>
-    <span class="marquee-item">Done-For-You Website Development</span><span class="marquee-item">Bank-Grade Security</span>
-    <span class="marquee-item">3-Month Free Support</span><span class="marquee-item">No Templates</span>
-    <span class="marquee-item">Fast Website Delivery</span><span class="marquee-item" data-usd="Worldwide Founders" data-inr="Global & India Clients">Worldwide Founders</span>
-    <span class="marquee-item">AI Calling Agent</span><span class="marquee-item">Affordable Web Design</span>
-  </div>
-</div>
-
-<!-- ══════════ FEATURES ══════════ -->
-<section class="section" id="features">
-  <p class="section-label sr">Website Design Agency for All Founders</p>
-  <h2 class="section-title sr title-hover" data-title="Custom website design for technical & non-technical founders.">Custom website design for<br/><em>all types of founders.</em></h2>
-  <div class="bento-grid">
-    <div class="bento-card wide sr tilt-target">
-      <div class="bento-icon" style="background:rgba(0,229,255,0.12); color:#00E5FF; border:1px solid rgba(0,229,255,0.3)">💸</div>
-      <div class="bento-title title-hover" data-title="Affordable Web Design for Startups">Affordable Web Design for Startups</div>
-      <div class="bento-desc" data-usd="Most agencies quote $8K–$20K for what we deliver starting at $1,500. No account managers, no middlemen — high-converting web engineering for startup founders at a fraction of traditional costs." data-inr="Most agencies quote ₹40,000–₹50,000 for what we deliver starting at ₹14,999. No account managers, no middlemen — high-converting web engineering for startup founders at a fraction of traditional costs.">Most agencies quote $8K–$20K for what we deliver starting at $1,500. No account managers, no middlemen — high-converting web engineering for startup founders at a fraction of traditional costs.</div>
-    </div>
-    <div class="bento-card sr tilt-target">
-      <div class="bento-icon" style="background:rgba(139,92,246,0.12); color:#8B5CF6; border:1px solid rgba(139,92,246,0.3)">🔒</div>
-      <div class="bento-title title-hover" data-title="Enterprise-Grade Security">Enterprise-Grade Security</div>
-      <div class="bento-desc">HTTPS, OWASP-compliant code, hardened headers, rate limiting, and input sanitization — built in from line one.</div>
-    </div>
-    <div class="bento-card sr tilt-target">
-      <div class="bento-icon" style="background:rgba(198,255,0,0.12); color:#C6FF00; border:1px solid rgba(198,255,0.3)">🎨</div>
-      <div class="bento-title title-hover" data-title="Website Builder vs Custom Web Development">100% Custom Web Development</div>
-      <div class="bento-desc">Why settle for rigid website builders when you can have professional website design for entrepreneurs? No Figma templates or recycled layouts.</div>
-    </div>
-    <div class="bento-card sr tilt-target">
-      <div class="bento-icon" style="background:rgba(255,0,127,0.12); color:#FF007F; border:1px solid rgba(255,0,127,0.3)">⚡</div>
-      <div class="bento-title title-hover" data-title="Fast Website Delivery for Startups">Fast Website Delivery</div>
-      <div class="bento-desc">We build websites fast. From contract to live deployment in 10–14 days guaranteed. No endless agency revision loops.</div>
-    </div>
-    <div class="bento-card sr tilt-target">
-      <div class="bento-icon" style="background:rgba(16,185,129,0.12); color:#10B981; border:1px solid rgba(16,185,129,0.3)">🛡️</div>
-      <div class="bento-title title-hover" data-title="Free Post-Launch Support">3-Month Free Support</div>
-      <div class="bento-desc">Website agency with free post-launch support included. Bugs fixed, content updated, performance tuned — completely free for 90 days.</div>
-    </div>
-    <div class="bento-card wide sr tilt-target">
-      <div class="bento-icon" style="background:rgba(74,108,247,0.12); color:#4A6CF7; border:1px solid rgba(74,108,247,0.3)">📱</div>
-      <div class="bento-title title-hover" data-title="Mobile-First for Founders">Mobile-First, Always</div>
-      <div class="bento-desc">60% of your users are on mobile. Every pixel is engineered mobile-first, ensuring high conversions for fast-scaling startup brands.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ AI AGENT ══════════ -->
-<section class="agent" id="agent">
-  <div class="agent-info">
-    <p class="section-label sr" style="color:#C6FF00">Growth Plan Exclusive</p>
-    <h2 class="sr title-hover" data-title="Your website works. Your AI calling agent never stops.">Your website works.<br/>Your <em>AI calling agent</em><br/>never stops.</h2>
-    <p class="sr">Upgrade to Growth and get a fully functional AI voice agent that calls your leads automatically — even at 2am on a Sunday. It qualifies, follows up, and books appointments so you wake up with filled calendars.</p>
-    <div class="agent-tags sr">
-      <span class="agent-tag">24/7 lead calls</span><span class="agent-tag">Automatic follow-up</span>
-      <span class="agent-tag">Appointment booking</span><span class="agent-tag">Lead qualification</span>
-      <span class="agent-tag">CRM sync</span>
-    </div>
-  </div>
-  <div class="agent-panel tilt-target sr">
-    <div class="agent-panel-head"><span class="agent-pulse"></span> AI Agent · Active Now</div>
-    <div class="agent-feat">
-      <div class="agent-feat-icon">📞</div>
-      <div><h4 class="title-hover" data-title="Calls leads the moment they submit">Calls leads the moment they submit</h4><p>Instant outbound call triggered the second a form is filled — while the lead is still warm.</p></div>
-    </div>
-    <div class="agent-feat">
-      <div class="agent-feat-icon">🌙</div>
-      <div><h4 class="title-hover" data-title="Works when you're closed or asleep">Works when you're closed or asleep</h4><p>No hours. No holidays. If a lead comes in at midnight, the agent calls at midnight.</p></div>
-    </div>
-    <div class="agent-feat">
-      <div class="agent-feat-icon">🗓️</div>
-      <div><h4 class="title-hover" data-title="Books appointments automatically">Books appointments automatically</h4><p>Syncs to your calendar. Qualified leads land directly in your schedule — no manual follow-up.</p></div>
-    </div>
-    <div class="agent-feat">
-      <div class="agent-feat-icon">📊</div>
-      <div><h4 class="title-hover" data-title="Full call logs and transcripts">Full call logs and transcripts</h4><p>Every conversation is recorded and logged. Know exactly what was said and where leads dropped off.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ PROCESS ══════════ -->
-<section class="process" id="process">
-  <p class="section-label sr">Fast Website Delivery for Startups</p>
-  <h2 class="section-title sr title-hover" data-title="Done-for-you website development in 4 clear steps.">Done-for-you website development<br/><em>in 4 clear steps.</em></h2>
-  <p class="sr" style="margin-top:14px;color:var(--text-secondary);font-size:16px;line-height:1.7">No surprises, no scope creep. Professional website design for entrepreneurs delivered fast.</p>
-  <div class="process-grid">
-    <div class="process-card tilt-target sr">
-      <div class="process-num">01</div>
-      <p class="process-phase">Day 1</p>
-      <h3 class="process-name title-hover" data-title="Discovery Call">Discovery Call</h3>
-      <p class="process-desc">30 minutes. We dig into your startup, your users, and your growth goals. We ask the strategic questions general web agencies skip.</p>
-    </div>
-    <div class="process-card tilt-target sr">
-      <div class="process-num">02</div>
-      <p class="process-phase">Days 2–5</p>
-      <h3 class="process-name title-hover" data-title="Custom Design">Custom Design</h3>
-      <p class="process-desc">Figma mockups built from scratch around your brand. We present 2 distinct directions, you pick one, we refine. No templates — ever.</p>
-    </div>
-    <div class="process-card tilt-target sr">
-      <div class="process-num">03</div>
-      <p class="process-phase">Days 5–12</p>
-      <h3 class="process-name title-hover" data-title="Secure Build">Secure Build</h3>
-      <p class="process-desc">OWASP-compliant engineering, mobile-first responsiveness, and SEO optimization. Custom web development baked in from line one.</p>
-    </div>
-    <div class="process-card tilt-target sr">
-      <div class="process-num">04</div>
-      <p class="process-phase">Day 14+</p>
-      <h3 class="process-name title-hover" data-title="Launch + 90-Day Support">Launch + 90-Day Support</h3>
-      <p class="process-desc">We deploy, monitor, and support your site for 3 months post-launch — free. Website design with ongoing support included so you scale stress-free.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ MAINTENANCE BANNER ══════════ -->
-<section class="maint-section" id="maintenance">
-  <div class="maint-inner sr">
-    <div class="maint-left">
-      <p class="maint-eyebrow">Website Agency with Free Post-Launch Support ✦</p>
-      <h2 class="maint-title title-hover" data-title="Web design with 3 months free support included.">Web design with <span class="glowing-support">3 months free support</span> included.</h2>
-      <p class="maint-desc">Every traditional agency ghosts you after launch day. We stay. Bugs fixed, content updated, performance tuned — all included in your flat project fee. No retainer, no fine print, no hourly billing.</p>
-      <div class="maint-pills">
-        <span class="agent-tag light">Bug fixes</span><span class="agent-tag light">Content updates</span>
-        <span class="agent-tag light">Performance tuning</span><span class="agent-tag light">Security patches</span>
-        <span class="agent-tag light">48hr response</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#161716" />
+    <title>WebArch — Websites, AI & Software for Ambitious Businesses</title>
+    <meta
+      name="description"
+      content="Your digital product studio. Custom websites, portfolios, AI agents, automated workflows and business software. Built around your next chapter."
+    />
+    <link rel="canonical" href="https://webarch.me/" />
+    <meta
+      property="og:title"
+      content="WebArch — From bold idea to real business."
+    />
+    <meta
+      property="og:description"
+      content="Websites, AI agents and the software behind your business. One studio, from first idea to launch."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://webarch.me/" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-wrap wrap">
+        <a class="brand" href="#" aria-label="WebArch home"
+          ><svg viewBox="0 0 30 32" aria-hidden="true">
+            <path
+              d="M4 29V15a11 11 0 0 1 22 0v14h-6V15a5 5 0 0 0-10 0v14Z"
+              fill="currentColor"
+            /></svg
+          >WebArch</a
+        >
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="#capabilities">Capabilities</a
+          ><a href="#explore">The possibilities</a
+          ><a href="#process">Our process</a><a href="#pricing">Pricing</a>
+        </nav>
+        <a class="button button-small button-light nav-book" href="#contact"
+          >Let’s talk <span aria-hidden="true">↗</span></a
+        >
+        <button
+          class="menu-toggle"
+          aria-label="Open navigation"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span>
+        </button>
       </div>
-    </div>
-    <a href="#contact" class="maint-btn nav-link-hover">Claim Your Spot →</a>
-  </div>
-</section>
-
-<!-- ══════════ PRICING ══════════ -->
-<section class="pricing" id="pricing">
-  <div class="pricing-header">
-    <div>
-      <p class="section-label sr">Pricing</p>
-      <h2 class="section-title sr title-hover" data-title="Transparent pricing. No surprise invoices.">Transparent pricing.<br/><em>No surprise invoices.</em></h2>
-    </div>
-    <div class="sr" style="align-self: center;">
-      <span class="geo-note" id="geo-note" style="margin-top: 0; font-size: 14px;">Detecting region...</span>
-    </div>
-  </div>
-  <div class="pricing-grid">
-    <!-- Starter -->
-    <div class="price-card tilt-target sr">
-      <p class="price-tier">Starter</p>
-      <div class="price-amount"><span class="sym curr-sym">$</span><span id="p-starter">899</span></div>
-      <p class="price-period">one-time project fee</p>
-      <p class="price-desc">Perfect for MVPs, landing pages, and small business sites</p>
-      <div class="price-divider"></div>
-      <ul class="price-list">
-        <li><span class="chk">✓</span>Up to 5 pages</li>
-        <li><span class="chk">✓</span>Custom design (no templates)</li>
-        <li><span class="chk">✓</span>Mobile-first responsive</li>
-        <li><span class="chk">✓</span>Security hardening</li>
-        <li><span class="chk">✓</span>3 months free maintenance</li>
-        <li><span class="chk">✓</span>14-day delivery</li>
-        <li><span class="chk">✓</span>Contact form + integrations</li>
-      </ul>
-      <a href="#contact" class="price-action outline nav-link-hover">Get Started →</a>
-    </div>
-    <!-- Growth -->
-    <div class="price-card featured tilt-target sr">
-      <span class="price-badge">BEST VALUE</span>
-      <p class="price-tier">Growth</p>
-      <div class="price-amount"><span class="sym curr-sym">$</span><span id="p-growth">3,000</span></div>
-      <p class="price-period">one-time project fee</p>
-      <p class="price-desc">Full web app, backend, integrations, and AI calling agent</p>
-      <div class="price-divider"></div>
-      <ul class="price-list">
-        <li><span class="chk">✓</span>Everything in Starter</li>
-        <li><span class="chk">✓</span>Unlimited pages</li>
-        <li><span class="chk">✓</span>Full-stack web application</li>
-        <li><span class="chk">✓</span>CMS / Admin dashboard</li>
-        <li><span class="chk">✓</span>API integrations (Stripe, CRM)</li>
-        <li><span class="chk">✓</span>Advanced security audit</li>
-        <li><span class="chk">✓</span>Priority support</li>
-        <li><span class="chk highlight">✓</span><strong>AI calling agent — works 24/7</strong></li>
-        <li><span class="chk">✓</span>Auto lead calls + appointment booking</li>
-      </ul>
-      <a href="#contact" class="price-action solid nav-link-hover">Get Started →</a>
-    </div>
-  </div>
-  <!-- Support -->
-  <div class="support-row sr">
-    <div style="grid-column:1/-1;margin-bottom:8px">
-      <h3 class="title-hover" data-title="After Your 3-Month Free Period" style="font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--text-primary)">After Your 3-Month Free Period</h3>
-      <p style="font-size:14px;color:var(--text-secondary);margin-top:4px">Need us to stick around longer? Simple, flat rates — no retainers, no contracts.</p>
-    </div>
-    <div class="support-block">
-      <div class="support-icon">🛠️</div>
-      <div>
-        <h4 class="title-hover" data-title="Ongoing Support">Ongoing Support</h4>
-        <div class="support-val"><span class="curr-sym">$</span><span id="p-support">100</span><span style="font-size:14px;font-weight:400;color:var(--text-muted)">/month</span></div>
-        <p>Bug fixes, content updates, performance issues, security patches — fast 48hr response.</p>
-      </div>
-    </div>
-    <div class="support-block">
-      <div class="support-icon">🚀</div>
-      <div>
-        <h4 class="title-hover" data-title="Feature Upgrades">Feature Upgrades</h4>
-        <div class="support-val"><span class="curr-sym">$</span><span id="p-upgrade">200</span><span style="font-size:14px;font-weight:400;color:var(--text-muted)">/session</span></div>
-        <p>New features, redesigns, new integrations, or significant upgrades — scoped and delivered.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ FAQ SECTION ══════════ -->
-<section class="faq-section" id="faq">
-  <p class="section-label sr">Buyer-Intent Questions Answered</p>
-  <h2 class="section-title sr title-hover" data-title="Frequently Asked Questions">Frequently Asked<br/><em>Questions.</em></h2>
-  <div class="faq-grid">
-    <div class="faq-item sr tilt-target">
-      <details>
-        <summary>How much does a custom website cost for a startup?</summary>
-        <div class="faq-answer">Unlike traditional web agencies that quote $8,000–$20,000 with bloated overhead, our custom website development for startups starts at a transparent flat fee starting at $1,500 (or localized ₹14,999 INR rates). You get a 100% custom-built design, mobile-first engineering, enterprise-grade security hardening, and 3 months of free post-launch support included.</div>
-      </details>
-    </div>
-    <div class="faq-item sr tilt-target">
-      <details>
-        <summary>Should I choose a website builder vs custom web development?</summary>
-        <div class="faq-answer">Website builders (like generic templates or drag-and-drop tools) leave your startup looking like thousands of competitors, load slowly with code bloat, and break down as you scale. Custom website design for non-technical founders gives your brand distinct authority, lightning-fast conversion speeds, and complete technical flexibility without requiring you to manage code.</div>
-      </details>
-    </div>
-    <div class="faq-item sr tilt-target">
-      <details>
-        <summary>Should I hire a freelance web developer for my startup or work with WebArch?</summary>
-        <div class="faq-answer">When you hire a lone web developer, you often risk missed deadlines, subpar UI/UX design, or abandoned code post-launch. WebArch operates as a dedicated website design agency for small business and startup founders—giving you senior designers and engineers working in parallel, guaranteed 14-day delivery, and our signature 3 months of free post-launch maintenance.</div>
-      </details>
-    </div>
-    <div class="faq-item sr tilt-target">
-      <details>
-        <summary>How do you deliver custom website design with a fast turnaround?</summary>
-        <div class="faq-answer">We are a web agency that builds websites fast without cutting corners. By eliminating account managers, unnecessary revision loops, and recycled layouts, our team sprints from discovery to live deployment in just 14 days (or up to a custom website design 3 week turnaround for complex web application features).</div>
-      </details>
-    </div>
-    <div class="faq-item sr tilt-target">
-      <details>
-        <summary>Do you offer website design with ongoing support included?</summary>
-        <div class="faq-answer">Absolutely. Every project includes 3 months of free post-launch support with zero asterisks. We handle bug fixes, performance tuning, content updates, and security patches so first-time founders and small business owners can focus 100% on scaling their venture.</div>
-      </details>
-    </div>
-    <div class="faq-item sr tilt-target">
-      <details>
-        <summary>Which regions and types of founders do you work with?</summary>
-        <div class="faq-answer">We partner with all types of founders worldwide—including technical solo creators, first-time non-technical entrepreneurs, DTC e-commerce brands, SaaS scale-ups, and agency owners. We serve clients across all regions globally, including the US, UK, Canada, Australia, Europe, India, Singapore, and Latin America with region-tailored pricing.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ CTA / CONTACT ══════════ -->
-<section class="cta" id="contact">
-  <div class="cta-box sr">
-    <h2 class="cta-title title-hover" data-title="Your site should be your best salesperson">Your site should be your<br/>best salesperson</h2>
-    <p class="cta-sub">Leave your details below and we'll reach out to schedule your free discovery call.</p>
-    <form class="contact-form" id="booking-form">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="New Call Booking Request!">
-      <div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your full name" required class="form-input"/></div>
-      <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required class="form-input"/></div>
-      <div class="form-group">
-        <label for="phone-input">Phone</label>
-        <div class="phone-input-container">
-          <div class="phone-prefix-badge" id="phone-prefix-badge" title="Detected Country">
-            <span id="phone-flag">🌐</span>
-            <span id="phone-code">+1</span>
+      <nav
+        id="mobile-menu"
+        class="mobile-menu"
+        aria-label="Mobile navigation"
+        hidden
+      >
+        <a href="#capabilities">Capabilities</a
+        ><a href="#explore">The possibilities</a
+        ><a href="#process">Our process</a><a href="#pricing">Pricing</a
+        ><a href="#contact">Let’s talk ↗</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="hero-grid wrap">
+          <div class="hero-copy">
+            <p class="eyebrow light-eyebrow">
+              <span class="status-dot"></span> A DIGITAL STUDIO FOR WHAT’S NEXT
+            </p>
+            <h1 id="hero-title">
+              From bold idea<br />to
+              <span class="serif-accent">real business.</span>
+            </h1>
+            <p class="hero-description">
+              Beautiful websites. Intelligent AI. Software that does the heavy
+              lifting. We build the digital side of your ambition.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-light" href="#contact"
+                >Build with us <span aria-hidden="true">↗</span></a
+              ><a class="text-link" href="#explore"
+                >Explore the possibilities <span aria-hidden="true">↓</span></a
+              >
+            </div>
+            <div class="hero-footnotes">
+              <span>Custom built. Always.</span
+              ><span>3 months of support included.</span>
+            </div>
           </div>
-          <input type="tel" id="phone-input" placeholder="(555) 000-0000" required class="form-input phone-input-with-badge" autocomplete="tel"/>
-          <input type="hidden" name="phone" id="phone-hidden"/>
+          <div class="scene-shell" id="scene-shell">
+            <div class="scene-ambient" aria-hidden="true"></div>
+            <div class="scene-fallback" aria-hidden="true">
+              <div class="fallback-arch"></div>
+              <div class="fallback-window">
+                <span class="demo-kicker">WEBARCH / DIGITAL STUDIO</span
+                ><strong>Ideas into<br />experiences.</strong>
+                <div class="fallback-line"></div>
+                <span>Designed for your next chapter ↗</span>
+              </div>
+            </div>
+            <canvas id="hero-canvas" aria-hidden="true"></canvas>
+            <span class="scene-label"
+              >THE WEBARCH WORLD <span>VOL. 02</span></span
+            >
+            <div class="scene-controls">
+              <span id="scene-hint">A new dimension of possibility</span
+              ><button
+                id="motion-toggle"
+                aria-label="Pause 3D animation"
+                aria-pressed="false"
+                hidden
+              >
+                <span aria-hidden="true">Ⅱ</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="hero-bottom wrap">
+          <span
+            ><span class="small-cross" aria-hidden="true">✳</span> Thoughtfully
+            designed. Seriously engineered.</span
+          ><a href="#capabilities"
+            >SCROLL TO DISCOVER <span aria-hidden="true">↓</span></a
+          >
+        </div>
+      </section>
+      <div class="expertise-strip">
+        <div class="wrap">
+          <span>WEBSITES & PORTFOLIOS</span
+          ><span class="strip-plus" aria-hidden="true">+</span
+          ><span>AI & AUTOMATION</span
+          ><span class="strip-plus" aria-hidden="true">+</span
+          ><span>BUSINESS SOFTWARE</span
+          ><span class="strip-plus" aria-hidden="true">+</span
+          ><span>BUILT FOR YOU</span>
         </div>
       </div>
-      <button type="submit" class="form-submit nav-link-hover" id="submit-btn">Book a Free Call →</button>
-    </form>
-  </div>
-</section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <a href="#" class="logo">
-    <div class="logo-icon">
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="#00E5FF" stroke-width="2.5" fill="rgba(0,229,255,0.1)"/>
-        <path d="M16 4V16M16 16L28 22M16 16L4 22" stroke="#C6FF00" stroke-width="2"/>
-        <circle cx="16" cy="16" r="3" fill="#00E5FF"/>
-      </svg>
-    </div>
-    <div class="logo-name">Web<span>Arch</span></div>
-  </a>
-  <ul class="footer-links"><li><a href="#features">Services</a></li><li><a href="#agent">AI Agent</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul>
-  <p class="footer-copy">© 2026 WebArch. All rights reserved.</p>
-</footer>
+      <section
+        id="capabilities"
+        class="section capabilities wrap"
+        aria-labelledby="capabilities-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / OUR CAPABILITIES</p>
+            <h2 id="capabilities-title">
+              One studio.<br />Your entire
+              <span class="muted">digital world.</span>
+            </h2>
+          </div>
+          <p>
+            You bring the ambition. We bring the design, engineering and
+            intelligence to make it work. Start with one project. Build from
+            there.
+          </p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-number">01</span
+              ><svg viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="6" y="9" width="36" height="30" rx="3" />
+                <path d="M6 17h36M13 13h1m4 0h1M14 24h20M14 30h12" />
+              </svg>
+            </div>
+            <h3>Websites & portfolios</h3>
+            <p>Make your first impression impossible to overlook.</p>
+            <ul>
+              <li>Personal & professional portfolios</li>
+              <li>Startup websites & landing pages</li>
+              <li>Corporate sites & content platforms</li>
+              <li>Website redesigns & CMS builds</li>
+            </ul>
+            <a
+              href="#contact"
+              class="service-link"
+              data-service="Websites & portfolios"
+              >Build your presence <span aria-hidden="true">↗</span></a
+            >
+          </article>
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-number">02</span
+              ><svg viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="10" y="13" width="28" height="24" rx="8" />
+                <path d="M24 6v7M18 24v3m12-3v3M19 32h10M5 22v8m38-8v8" />
+                <circle cx="24" cy="5" r="1" />
+              </svg>
+            </div>
+            <h3>AI systems & agents</h3>
+            <p>Give your business a new kind of intelligence.</p>
+            <ul>
+              <li>Customer support & knowledge chatbots</li>
+              <li>AI voice & calling assistants</li>
+              <li>Document search & RAG systems</li>
+              <li>AI copilots & lead qualification</li>
+            </ul>
+            <a
+              href="#contact"
+              class="service-link"
+              data-service="AI systems & agents"
+              >Make it intelligent <span aria-hidden="true">↗</span></a
+            >
+          </article>
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-number">03</span
+              ><svg viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="4" y="19" width="12" height="12" rx="2" />
+                <rect x="31" y="5" width="12" height="12" rx="2" />
+                <rect x="31" y="31" width="12" height="12" rx="2" />
+                <path d="M16 25h8V11h7M24 25v12h7" />
+              </svg>
+            </div>
+            <h3>Agentic workflows</h3>
+            <p>Connect your tools. Get the repetitive work done.</p>
+            <ul>
+              <li>Multi-step AI workflows with approvals</li>
+              <li>CRM, email & API integrations</li>
+              <li>Lead capture & onboarding automation</li>
+              <li>Scheduling, reporting & follow-ups</li>
+            </ul>
+            <a
+              href="#contact"
+              class="service-link"
+              data-service="Agentic workflows"
+              >Automate the everyday <span aria-hidden="true">↗</span></a
+            >
+          </article>
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-number">04</span
+              ><svg viewBox="0 0 48 48" aria-hidden="true">
+                <rect x="6" y="6" width="36" height="36" rx="3" />
+                <path d="M6 17h36M17 17v25M24 34v-8m6 8V22m6 12v-5" />
+              </svg>
+            </div>
+            <h3>Business software</h3>
+            <p>Bring your operations into one clear picture.</p>
+            <ul>
+              <li>Inventory & order management</li>
+              <li>Custom CRM & internal admin tools</li>
+              <li>Booking & customer portals</li>
+              <li>Team, vendor & project management</li>
+            </ul>
+            <a
+              href="#contact"
+              class="service-link"
+              data-service="Business software"
+              >Simplify your operations <span aria-hidden="true">↗</span></a
+            >
+          </article>
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-number">05</span
+              ><svg viewBox="0 0 48 48" aria-hidden="true">
+                <path
+                  d="M7 16h34l-3 25H10ZM15 16V12a9 9 0 0 1 18 0v4M18 26h12m-6-6v12"
+                />
+              </svg>
+            </div>
+            <h3>Commerce & platforms</h3>
+            <p>Turn a great product into a great experience.</p>
+            <ul>
+              <li>Online stores & product catalogues</li>
+              <li>Payments & subscription integrations</li>
+              <li>SaaS MVPs & membership platforms</li>
+              <li>Marketplace & multi-vendor systems</li>
+            </ul>
+            <a
+              href="#contact"
+              class="service-link"
+              data-service="Commerce & platforms"
+              >Build your platform <span aria-hidden="true">↗</span></a
+            >
+          </article>
+          <article class="service-card">
+            <div class="service-top">
+              <span class="service-number">06</span
+              ><svg viewBox="0 0 48 48" aria-hidden="true">
+                <ellipse cx="24" cy="11" rx="16" ry="6" />
+                <path d="M8 11v26c0 8 32 8 32 0V11M8 24c0 8 32 8 32 0" />
+              </svg>
+            </div>
+            <h3>Data & infrastructure</h3>
+            <p>A strong foundation for everything that follows.</p>
+            <ul>
+              <li>Database design, migration & management</li>
+              <li>Analytics & reporting dashboards</li>
+              <li>Backend APIs & third-party connections</li>
+              <li>Deployment, maintenance & monitoring</li>
+            </ul>
+            <a
+              href="#contact"
+              class="service-link"
+              data-service="Data & infrastructure"
+              >Build a stronger foundation <span aria-hidden="true">↗</span></a
+            >
+          </article>
+        </div>
+        <div class="capability-note">
+          <span>Something a little different in mind?</span
+          ><a href="#contact"
+            >Tell us what you’re imagining <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </section>
 
-</div><!-- end #app -->
+      <section
+        id="explore"
+        class="explore section"
+        aria-labelledby="explore-title"
+      >
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow light-eyebrow">02 / MADE POSSIBLE</p>
+              <h2 id="explore-title">
+                Less imagining.<br /><span class="muted-light"
+                  >More interacting.</span
+                >
+              </h2>
+            </div>
+            <p>
+              A small window into what we can build for you. Explore these
+              interactive concepts, then imagine your own.
+            </p>
+          </div>
+          <div class="demo-tabs" role="tablist" aria-label="Product concepts">
+            <button
+              role="tab"
+              id="tab-web"
+              aria-selected="true"
+              aria-controls="panel-web"
+              data-demo="web"
+            >
+              01 <span>Digital presence</span></button
+            ><button
+              role="tab"
+              id="tab-ai"
+              aria-selected="false"
+              aria-controls="panel-ai"
+              tabindex="-1"
+              data-demo="ai"
+            >
+              02 <span>Intelligent workflows</span></button
+            ><button
+              role="tab"
+              id="tab-ops"
+              aria-selected="false"
+              aria-controls="panel-ops"
+              tabindex="-1"
+              data-demo="ops"
+            >
+              03 <span>Connected operations</span>
+            </button>
+          </div>
+          <div class="demo-stage" id="demo-stage">
+            <div
+              class="demo-panel"
+              id="panel-web"
+              role="tabpanel"
+              aria-labelledby="tab-web"
+              tabindex="0"
+            >
+              <div class="demo-editorial">
+                <p class="eyebrow">YOUR BRAND, IN ITS BEST LIGHT</p>
+                <h3>A presence<br />with presence.</h3>
+                <p>
+                  A portfolio, a launch, a whole new venture. Give your ideas a
+                  home that feels unmistakably yours.
+                </p>
+                <div class="demo-tags">
+                  <span>Web design</span><span>Development</span
+                  ><span>CMS</span>
+                </div>
+                <a
+                  href="#contact"
+                  class="text-link"
+                  data-service="Websites & portfolios"
+                  >Make your first impression ↗</a
+                >
+              </div>
+              <div class="portfolio-demo product-depth">
+                <div class="demo-browser">
+                  <span>● ● ●</span><span>studio.example</span><span>↗</span>
+                </div>
+                <div class="portfolio-content">
+                  <div class="portfolio-nav">
+                    <strong>FORME®</strong
+                    ><span>Independent design studio</span>
+                  </div>
+                  <div class="portfolio-art" aria-hidden="true">
+                    <div class="art-arch one"></div>
+                    <div class="art-arch two"></div>
+                    <div class="art-sphere"></div>
+                  </div>
+                  <div class="portfolio-title">
+                    Good design.<br />Lasting impression.
+                  </div>
+                  <div class="portfolio-bottom">
+                    <span>A study in form & function.</span
+                    ><span>Explore our world ↗</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="demo-panel"
+              id="panel-ai"
+              role="tabpanel"
+              aria-labelledby="tab-ai"
+              tabindex="0"
+              hidden
+            >
+              <div class="demo-editorial">
+                <p class="eyebrow">LESS BUSYWORK. MORE MOMENTUM.</p>
+                <h3>Good work.<br />On autopilot.</h3>
+                <p>
+                  Turn an enquiry into a qualified lead, a useful conversation
+                  and a clear next step. With human approval where it matters.
+                </p>
+                <div class="demo-tags">
+                  <span>AI agents</span><span>CRM sync</span
+                  ><span>Approvals</span>
+                </div>
+                <button id="run-workflow" class="button button-light">
+                  Run the demo <span aria-hidden="true">↗</span>
+                </button>
+                <p class="demo-disclaimer">
+                  Simulated locally. No calls or messages are sent.
+                </p>
+              </div>
+              <div class="workflow-demo product-depth">
+                <div class="demo-browser">
+                  <span>WEBARCH / WORKFLOWS</span
+                  ><span id="workflow-badge">Ready</span>
+                </div>
+                <div class="workflow-body">
+                  <div class="workflow-node" data-step="0">
+                    <span class="node-icon">↘</span>
+                    <div>
+                      <strong>New enquiry</strong
+                      ><small>A founder wants to build an MVP</small>
+                    </div>
+                    <span class="node-status">○</span>
+                  </div>
+                  <div class="workflow-connector"></div>
+                  <div class="workflow-node" data-step="1">
+                    <span class="node-icon">✳</span>
+                    <div>
+                      <strong>AI qualification</strong
+                      ><small>Organise needs, budget & timeline</small>
+                    </div>
+                    <span class="node-status">○</span>
+                  </div>
+                  <div class="workflow-connector"></div>
+                  <div class="workflow-node" data-step="2">
+                    <span class="node-icon">✓</span>
+                    <div>
+                      <strong>Human review</strong
+                      ><small>Approve the proposed next step</small>
+                    </div>
+                    <span class="node-status">○</span>
+                  </div>
+                  <div class="workflow-connector"></div>
+                  <div class="workflow-node" data-step="3">
+                    <span class="node-icon">↗</span>
+                    <div>
+                      <strong>CRM updated</strong
+                      ><small>Ready for the discovery call</small>
+                    </div>
+                    <span class="node-status">○</span>
+                  </div>
+                  <p class="workflow-result" id="workflow-result" role="status">
+                    Click “Run the demo” to explore the flow.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="demo-panel"
+              id="panel-ops"
+              role="tabpanel"
+              aria-labelledby="tab-ops"
+              tabindex="0"
+              hidden
+            >
+              <div class="demo-editorial">
+                <p class="eyebrow">ONE CLEAR PICTURE</p>
+                <h3>A little order.<br />A lot of clarity.</h3>
+                <p>
+                  Stock, orders, customers and reporting. Replace scattered
+                  spreadsheets with software that fits the way you work.
+                </p>
+                <div class="demo-tags">
+                  <span>Inventory</span><span>Dashboards</span
+                  ><span>Databases</span>
+                </div>
+                <a
+                  href="#contact"
+                  class="text-link"
+                  data-service="Business software"
+                  >Connect your operations ↗</a
+                >
+              </div>
+              <div class="inventory-demo product-depth">
+                <div class="demo-browser">
+                  <span>WEBARCH / OPERATIONS</span><span>Sample data</span>
+                </div>
+                <div class="inventory-body">
+                  <div class="inventory-heading">
+                    <h4>Inventory overview</h4>
+                    <span class="live-badge">● Live demo</span>
+                  </div>
+                  <div class="inventory-stats">
+                    <div><small>Total units</small><strong>182</strong></div>
+                    <div><small>Products</small><strong>4</strong></div>
+                    <div><small>Needs attention</small><strong>2</strong></div>
+                  </div>
+                  <div
+                    class="inventory-filter"
+                    role="group"
+                    aria-label="Filter sample inventory"
+                  >
+                    <button aria-pressed="true" data-filter="all">
+                      All products</button
+                    ><button aria-pressed="false" data-filter="low">
+                      Low stock
+                    </button>
+                  </div>
+                  <div class="table-scroll">
+                    <table>
+                      <caption class="sr-only">
+                        Illustrative inventory. Filter products using the
+                        buttons above.
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Product</th>
+                          <th scope="col">Stock</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-stock="ok">
+                          <td>
+                            <span class="product-dot clay"></span>Ceramic cup
+                          </td>
+                          <td>84</td>
+                          <td><span class="stock-pill">In stock</span></td>
+                        </tr>
+                        <tr data-stock="ok">
+                          <td>
+                            <span class="product-dot stone"></span>Desk light
+                          </td>
+                          <td>92</td>
+                          <td><span class="stock-pill">In stock</span></td>
+                        </tr>
+                        <tr data-stock="low">
+                          <td>
+                            <span class="product-dot green"></span>Travel bag
+                          </td>
+                          <td>6</td>
+                          <td>
+                            <span class="stock-pill warning">Low stock</span>
+                          </td>
+                        </tr>
+                        <tr data-stock="low">
+                          <td><span class="product-dot ink"></span>Notebook</td>
+                          <td>0</td>
+                          <td>
+                            <span class="stock-pill warning">Out of stock</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p
+                    id="inventory-status"
+                    class="inventory-status"
+                    role="status"
+                  >
+                    Showing 4 sample products
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="concept-note">
+            <span aria-hidden="true">↳</span> Illustrative product concepts, not
+            client case studies. Your build is tailored to your requirements.
+          </p>
+        </div>
+      </section>
 
-<script type="module" src="/src/main.js"></script>
-</body>
+      <section
+        id="process"
+        class="section wrap"
+        aria-labelledby="process-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 / HOW WE GET THERE</p>
+            <h2 id="process-title">
+              A clear path.<br /><span class="muted">From day one.</span>
+            </h2>
+          </div>
+          <p>
+            You shouldn’t need to be technical to build something great. You’ll
+            know what’s happening, what’s next and what it costs.
+          </p>
+        </div>
+        <ol class="process-grid">
+          <li>
+            <span class="process-number">01</span>
+            <h3>Understand.</h3>
+            <p>
+              We talk goals, users and the problem worth solving. Then agree on
+              the scope, timeline and price.
+            </p>
+            <span class="process-deliverable">Discovery & project plan</span>
+          </li>
+          <li>
+            <span class="process-number">02</span>
+            <h3>Design.</h3>
+            <p>
+              Explore the look, feel and user journey. Review a clear direction
+              before development begins.
+            </p>
+            <span class="process-deliverable">Design & prototype</span>
+          </li>
+          <li>
+            <span class="process-number">03</span>
+            <h3>Build.</h3>
+            <p>
+              We engineer your product, connect your tools and test the flows
+              that matter. You stay in the loop.
+            </p>
+            <span class="process-deliverable">Development & testing</span>
+          </li>
+          <li>
+            <span class="process-number">04</span>
+            <h3>Launch. Evolve.</h3>
+            <p>
+              Go live with a handover and three months of support. Build on a
+              foundation you can grow with.
+            </p>
+            <span class="process-deliverable">Launch & ongoing care</span>
+          </li>
+        </ol>
+      </section>
+
+      <section
+        id="pricing"
+        class="section pricing-section"
+        aria-labelledby="pricing-title"
+      >
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">04 / THE INVESTMENT</p>
+              <h2 id="pricing-title">
+                Big ambition.<br /><span class="muted"
+                  >Clear starting points.</span
+                >
+              </h2>
+            </div>
+            <div class="pricing-intro">
+              <p>
+                Start with what you need today. We’ll scope the rest together.
+              </p>
+              <div
+                class="currency-switch"
+                role="group"
+                aria-label="Pricing currency"
+              >
+                <button data-currency="USD" aria-pressed="true">USD $</button
+                ><button data-currency="INR" aria-pressed="false">INR ₹</button>
+              </div>
+              <small id="region-note" aria-live="polite"
+                >Choose your preferred pricing region.</small
+              >
+            </div>
+          </div>
+          <div class="pricing-grid">
+            <article class="price-card">
+              <p class="eyebrow">THE FOUNDATION</p>
+              <h3>Starter website</h3>
+              <p>Your first launch, done properly.</p>
+              <div class="price">
+                <span data-price="starter">$1,500</span
+                ><small>one-time project</small>
+              </div>
+              <ul class="check-list">
+                <li>Up to 5 custom-designed pages</li>
+                <li>Responsive design & development</li>
+                <li>Contact form & essential integrations</li>
+                <li>Basic search engine setup</li>
+                <li>3 months of post-launch support</li>
+              </ul>
+              <a
+                class="button button-outline"
+                href="#contact"
+                data-service="Websites & portfolios"
+                >Let’s get you started <span aria-hidden="true">↗</span></a
+              ><small class="price-note"
+                >Typical website delivery: 10–14 days after scope and content
+                are agreed.</small
+              >
+            </article>
+            <article class="price-card featured">
+              <span class="plan-ribbon">FOR YOUR NEXT CHAPTER</span>
+              <p class="eyebrow light-eyebrow">THE NEXT LEVEL</p>
+              <h3>Growth build</h3>
+              <p>More capability. More possibilities.</p>
+              <div class="price">
+                <span data-price="growth">$3,000</span
+                ><small>starting from / project</small>
+              </div>
+              <ul class="check-list">
+                <li>Custom full-stack web application</li>
+                <li>CMS or admin dashboard</li>
+                <li>Payment, CRM & API integrations</li>
+                <li>AI calling-agent integration</li>
+                <li>3 months of priority launch support</li>
+              </ul>
+              <a
+                class="button button-light"
+                href="#contact"
+                data-service="Commerce & platforms"
+                >Build your next chapter <span aria-hidden="true">↗</span></a
+              ><small class="price-note"
+                >Final scope, delivery and third-party usage costs agreed before
+                we begin.</small
+              >
+            </article>
+            <article class="price-card custom-plan">
+              <p class="eyebrow">YOUR OWN BLUEPRINT</p>
+              <h3>Something custom</h3>
+              <p>Built around your business.</p>
+              <div class="custom-price">
+                Let’s scope it.<small>A proposal that fits your project</small>
+              </div>
+              <ul class="check-list">
+                <li>AI agents & agentic workflows</li>
+                <li>Inventory & management systems</li>
+                <li>Database & backend engineering</li>
+                <li>Custom platforms & integrations</li>
+                <li>Phased delivery for bigger ideas</li>
+              </ul>
+              <a
+                class="button button-outline"
+                href="#contact"
+                data-service="Something custom"
+                >Tell us your idea <span aria-hidden="true">↗</span></a
+              ><small class="price-note"
+                >Not sure where to start? That’s what the discovery call is
+                for.</small
+              >
+            </article>
+          </div>
+          <div class="support-bar">
+            <div>
+              <span class="support-icon" aria-hidden="true">↗</span>
+              <div>
+                <strong>Launch is just the beginning.</strong>
+                <p>3 months of support included. A clear path after that.</p>
+              </div>
+            </div>
+            <div>
+              <span
+                >Ongoing support
+                <strong
+                  ><span data-price="support">$100</span
+                  ><small>/month</small></strong
+                ></span
+              ><span
+                >Feature upgrades
+                <strong
+                  ><span data-price="upgrade">$200</span
+                  ><small>/session</small></strong
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="faq"
+        class="section faq-layout wrap"
+        aria-labelledby="faq-title"
+      >
+        <div>
+          <p class="eyebrow">05 / A FEW GOOD QUESTIONS</p>
+          <h2 id="faq-title">
+            Glad you<br /><span class="muted">asked.</span>
+          </h2>
+          <p class="faq-aside">
+            Have something else in mind?<br /><a
+              href="#contact"
+              class="inline-link"
+              >Let’s talk about it ↗</a
+            >
+          </p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>
+              I have an idea, but I’m not technical. Can you help?
+            </summary>
+            <p>
+              Absolutely. Describe what you want your customers or team to do.
+              We’ll help translate that into a practical scope, a clear user
+              experience and the right technical approach.
+            </p>
+          </details>
+          <details>
+            <summary>Can you build more than a website?</summary>
+            <p>
+              Yes. We build portfolios, web applications, AI chatbots, calling
+              assistants, agentic workflows, inventory systems, customer
+              portals, databases and integrations. If it needs custom software,
+              tell us about it and we’ll assess the best way forward.
+            </p>
+          </details>
+          <details>
+            <summary>Is everything custom built?</summary>
+            <p>
+              Your design and workflows are tailored to your needs. We use
+              established frameworks and reliable services where they make
+              sense, so you get a distinctive product without rebuilding every
+              underlying tool.
+            </p>
+          </details>
+          <details>
+            <summary>How long does a project take?</summary>
+            <p>
+              A typical Starter website takes 10–14 days after scope and content
+              are agreed. AI systems, integrations and larger applications need
+              their own timeline. We agree on milestones before work starts.
+            </p>
+          </details>
+          <details>
+            <summary>What is included in the three months of support?</summary>
+            <p>
+              Post-launch bug fixes, content updates and performance support
+              within the agreed project scope. Larger features and third-party
+              subscription or usage fees are scoped separately, so there are no
+              surprises.
+            </p>
+          </details>
+          <details>
+            <summary>Can you improve or connect my existing tools?</summary>
+            <p>
+              Yes. We can review your current website, database, CRM or
+              operations workflow and propose improvements or integrations.
+              Feasibility depends on the systems and API access available.
+            </p>
+          </details>
+          <details>
+            <summary>Do you work with clients outside India?</summary>
+            <p>
+              Yes. We work with founders and businesses worldwide. Choose USD or
+              INR pricing above and tell us your time zone when planning your
+              discovery call.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section
+        id="contact"
+        class="contact-section"
+        aria-labelledby="contact-title"
+      >
+        <div class="wrap contact-grid">
+          <div class="contact-copy">
+            <p class="eyebrow light-eyebrow">
+              06 / YOUR NEXT CHAPTER STARTS HERE
+            </p>
+            <h2 id="contact-title">
+              Got a <span class="serif-accent">bold idea?</span><br />Let’s
+              build it.
+            </h2>
+            <p>
+              A new website. A smarter workflow. A system you wish existed. Tell
+              us what you have in mind.
+            </p>
+            <div class="contact-promise">
+              <span aria-hidden="true">↗</span>
+              <div>
+                <strong>A conversation, not a sales script.</strong>
+                <p>
+                  We’ll discuss your goals, explore what’s possible and help you
+                  find the next step.
+                </p>
+              </div>
+            </div>
+            <a class="contact-email" href="mailto:esskay400d@gmail.com"
+              >Prefer email? Write to us ↗</a
+            >
+          </div>
+          <form id="booking-form" class="booking-form">
+            <div class="form-row">
+              <div class="field">
+                <label for="contact-name">Your name <span>*</span></label
+                ><input
+                  id="contact-name"
+                  name="name"
+                  autocomplete="name"
+                  placeholder="Alex Morgan"
+                  maxlength="120"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="contact-email">Email address <span>*</span></label
+                ><input
+                  id="contact-email"
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  placeholder="alex@company.com"
+                  maxlength="254"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="contact-phone"
+                  >Phone <span class="optional">optional</span></label
+                ><input
+                  id="contact-phone"
+                  type="tel"
+                  name="phone"
+                  autocomplete="tel"
+                  placeholder="Include country code, e.g. +91"
+                  maxlength="40"
+                />
+              </div>
+              <div class="field">
+                <label for="contact-service"
+                  >What are you building? <span>*</span></label
+                ><select id="contact-service" name="service" required>
+                  <option value="">Select a service</option>
+                  <option>Websites & portfolios</option>
+                  <option>AI systems & agents</option>
+                  <option>Agentic workflows</option>
+                  <option>Business software</option>
+                  <option>Commerce & platforms</option>
+                  <option>Data & infrastructure</option>
+                  <option>Something custom</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="contact-message"
+                >A little about your idea <span>*</span></label
+              ><textarea
+                id="contact-message"
+                name="message"
+                rows="3"
+                placeholder="What would you like to build or improve?"
+                minlength="10"
+                maxlength="5000"
+                required
+              ></textarea>
+            </div>
+            <div class="honeypot" aria-hidden="true">
+              <label for="company-url">Leave this empty</label
+              ><input
+                id="company-url"
+                name="_honey"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+            <input
+              type="hidden"
+              name="_subject"
+              value="WebArch — New project enquiry"
+            /><input type="hidden" name="_template" value="table" /><label
+              class="consent"
+              ><input
+                type="checkbox"
+                name="contact_consent"
+                value="Yes"
+                required
+              /><span
+                >I agree to be contacted about this enquiry. My details will be
+                sent via FormSubmit to WebArch.</span
+              ></label
+            ><button
+              type="submit"
+              id="submit-btn"
+              class="button button-light"
+              disabled
+            >
+              Let’s make it happen <span aria-hidden="true">↗</span>
+            </button>
+            <p
+              class="form-status"
+              id="form-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+            <p class="form-footnote">Free discovery call. No obligation.</p>
+            <noscript
+              ><p>
+                Please
+                <a href="mailto:esskay400d@gmail.com">email your enquiry</a>.
+                JavaScript is needed to submit this form.
+              </p></noscript
+            >
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-top">
+        <a class="brand" href="#">WebArch</a
+        ><span>Considered design. Capable technology.</span
+        ><a href="#">Back to top ↑</a>
+      </div>
+      <div class="wrap footer-bottom">
+        <span
+          >© <span id="year">2026</span> WebArch. All rights reserved.</span
+        >
+        <nav aria-label="Footer">
+          <a href="#capabilities">Capabilities</a><a href="#pricing">Pricing</a
+          ><a href="#contact">Contact</a>
+        </nav>
+        <span>Built for what’s next.</span>
+      </div>
+    </footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
