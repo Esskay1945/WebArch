@@ -43,7 +43,9 @@ test("responsive layout has no document overflow from 320 to 1920px", async ({
       "Intelligent workflows",
       "Connected operations",
     ]) {
-      await page.getByRole("tab", { name: new RegExp(name) }).click();
+      await page
+        .getByRole("tab", { name: new RegExp(name) })
+        .evaluate((tab) => tab.click());
       const metrics = await page.evaluate(() => ({
         viewport: innerWidth,
         document: document.documentElement.scrollWidth,
@@ -262,4 +264,74 @@ test("no JavaScript still exposes content and email contact", async ({
   ).toBeVisible();
   await expect(page.locator("#submit-btn")).toBeDisabled();
   await context.close();
+});
+
+test("hero product controls focus screens, preselect enquiry and reset with Escape", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator("#scene-shell")).toHaveClass(/scene-ready/);
+  await page.getByRole("button", { name: "AI agents", exact: true }).click();
+  await expect(page.locator("#scene-shell")).toHaveAttribute(
+    "data-selected-screen",
+    "voice",
+  );
+  await expect(
+    page.getByRole("heading", { name: "A smarter first conversation." }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Build something like this" }).click();
+  await expect(page.getByLabel("What are you building?")).toHaveValue(
+    "AI systems & agents",
+  );
+  await page
+    .getByRole("button", { name: "Business systems", exact: true })
+    .click();
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".hero-product-detail")).toBeHidden();
+  await expect(
+    page.getByRole("button", { name: "Business systems", exact: true }),
+  ).toBeFocused();
+  await page.locator("#hero-canvas").scrollIntoViewIfNeeded();
+  const canvas = await page.locator("#hero-canvas").boundingBox();
+  await page.mouse.move(
+    canvas.x + canvas.width / 2,
+    canvas.y + canvas.height / 2,
+  );
+  await page.mouse.down();
+  await page.mouse.move(
+    canvas.x + canvas.width / 2 + 80,
+    canvas.y + canvas.height / 2,
+    { steps: 8 },
+  );
+  await page.mouse.up();
+  expect(
+    Number(await page.locator("#scene-shell").getAttribute("data-rotation")),
+  ).toBeGreaterThan(0);
+});
+
+test("hero discovery works without WebGL and fits 320px with details open", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      if (/webgl/i.test(type)) return null;
+      return original.call(this, type, ...args);
+    };
+  });
+  await page.setViewportSize({ width: 320, height: 900 });
+  await page.goto("/");
+  await page
+    .getByRole("button", { name: "Business systems", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Bring your operations together." }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(320);
+  await page.getByRole("link", { name: "Build something like this" }).click();
+  await expect(page.getByLabel("What are you building?")).toHaveValue(
+    "Business software",
+  );
 });

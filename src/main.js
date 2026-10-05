@@ -3,6 +3,7 @@ import "./style.css";
 import { initNav } from "./ui/nav.js";
 import { initPricing } from "./ui/pricing.js";
 import { initForm } from "./ui/form.js";
+import { initHeroExplorer } from "./ui/hero-explorer.js";
 import { initDemos } from "./ui/demos.js";
 
 // Essential interactions are independent of the optional WebGL enhancement.
@@ -13,12 +14,16 @@ initDemos();
 document.getElementById("year").textContent = new Date().getFullYear();
 
 let sceneController;
+const heroExplorer = initHeroExplorer((kind) =>
+  sceneController?.select?.(kind),
+);
 const shell = document.getElementById("scene-shell");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 async function loadScene() {
   try {
     const { initScene } = await import("./three/scene.js");
-    sceneController = initScene(shell, reducedMotion);
+    sceneController = initScene(shell, reducedMotion, heroExplorer.show);
+    if (heroExplorer.selected) sceneController?.select?.(heroExplorer.selected);
   } catch (error) {
     // The CSS sculpture stays visible, and the rest of the page keeps working.
     console.info(

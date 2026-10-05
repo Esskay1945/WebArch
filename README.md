@@ -21,8 +21,9 @@ GitHub Pages deployment is configured for pushes to `main`. The existing `webarc
 ## Design and behaviour
 
 - Graphite, warm ivory, sage and copper palette with responsive layouts starting at **320px**.
-- A procedural arch, metallic trim, product-screen textures, lights and shadows. Mouse movement changes perspective. The pause button stops motion.
+- A procedural arch, metallic trim, product-screen textures, lights and shadows. Drag the sculpture to rotate it. Click a product screen or use the accessible product buttons to bring it forward and explore its service. The enquiry link preselects that service; Escape or the close button returns to the sculpture. The pause button stops ambient motion.
 - The scene is dynamically imported after essential UI initialization. It pauses outside the viewport and when the tab is hidden. Reduced-motion users get a static render. Browsers without WebGL keep a CSS illustration.
+- Larger reading sizes throughout, with labels at least 12px and mobile reflow that preserves the existing visual direction.
 - Six service groups: websites and portfolios; AI systems and agents; agentic workflows; business software; commerce and platforms; data and infrastructure.
 - Three keyboard-accessible product-concept tabs, a local workflow simulation and a filterable sample inventory. These are labelled illustrative concepts, not client work or a live AI system.
 - Explicit USD/INR controls, with an initial India-time-zone preference and optional browser storage. No IP geolocation requests.
@@ -53,7 +54,7 @@ npm run build
 npm test
 ```
 
-The browser suite covers responsive overflow across a width sweep from 320 to 1920px, all demo panels, mobile navigation, keyboard tabs, currency persistence, service selection, failed/successful form responses, duplicate submits, blocked storage, unavailable WebGL, motion controls and no-JavaScript content. Build and browser checks also run on pull requests.
+The browser suite covers responsive overflow across a width sweep from 320 to 1920px, all demo panels, mobile navigation, keyboard tabs, currency persistence, service selection, failed/successful form responses, duplicate submits, blocked storage, unavailable WebGL, motion controls and no-JavaScript content, hero screen selection, drag rotation, Escape reset and hero discovery without WebGL. Build and browser checks also run on pull requests.
 
 The Three.js scene is an optional separate bundle (approximately 145KB compressed). Rendering quality is capped on small screens. Test on representative physical phones before tuning visual fidelity upward.
 

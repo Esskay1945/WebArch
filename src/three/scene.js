@@ -3,7 +3,7 @@ import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.j
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 
 // All visuals are procedural. No model download, external texture or image is required.
-export function initScene(shell, reducedMotion) {
+export function initScene(shell, reducedMotion, onSelect) {
   const canvas = shell.querySelector("canvas");
   let renderer;
   try {
@@ -14,7 +14,7 @@ export function initScene(shell, reducedMotion) {
       powerPreference: "low-power",
     });
   } catch {
-    return { pause() {}, resume() {} }; // Keep the lightweight CSS sculpture visible.
+    return { pause() {}, resume() {}, select() {} }; // Keep the lightweight CSS sculpture visible.
   }
   renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(
@@ -355,7 +355,12 @@ export function initScene(shell, reducedMotion) {
   const motion = document.getElementById("motion-toggle");
   const hint = document.getElementById("scene-hint");
   const basePositions = [site, voice, ops].map((item) => item.position.y);
-  const moving = () => !reducedMotion.matches && !userPaused;
+  const moving = () =>
+    !reducedMotion.matches &&
+    !userPaused &&
+    !selected &&
+    !down &&
+    !transitioning;
   function render(time) {
     frame = 0;
     if (!visible || !pageVisible || lost) {
@@ -366,7 +371,7 @@ export function initScene(shell, reducedMotion) {
     lastTime = time;
     if (moving()) {
       sculpture.rotation.y +=
-        (-0.16 + pointerX * 0.19 - sculpture.rotation.y) * 0.045;
+        (dragRotation + pointerX * 0.19 - sculpture.rotation.y) * 0.045;
       sculpture.rotation.x += (pointerY * 0.045 - sculpture.rotation.x) * 0.045;
       [site, voice, ops].forEach((item, index) => {
         item.position.y =
@@ -396,7 +401,7 @@ export function initScene(shell, reducedMotion) {
     schedule();
   }
   function syncMotion() {
-    const paused = !moving();
+    const paused = reducedMotion.matches || userPaused;
     motion.setAttribute("aria-pressed", String(paused));
     motion.setAttribute(
       "aria-label",
@@ -405,26 +410,128 @@ export function initScene(shell, reducedMotion) {
     motion.innerHTML = `<span aria-hidden="true">${paused ? "▷" : "Ⅱ"}</span>`;
     motion.hidden = reducedMotion.matches;
     hint.textContent = reducedMotion.matches
-      ? "A quieter view. Reduced motion respected."
-      : window.matchMedia("(pointer:fine)").matches
-        ? "Move your cursor. Explore a new perspective."
-        : "Made with dimension. Built with purpose.";
+      ? "Drag or choose a screen. Reduced motion respected."
+      : "Drag to rotate. Tap a screen to explore.";
     stop();
     schedule();
   }
-  shell.addEventListener(
-    "pointermove",
-    (event) => {
-      if (event.pointerType !== "mouse" || !moving()) return;
-      const rect = shell.getBoundingClientRect();
-      pointerX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      pointerY = ((event.clientY - rect.top) / rect.height) * 2 - 1;
-    },
-    { passive: true },
+  const panels = { site, voice, ops };
+  const original = Object.fromEntries(
+    Object.entries(panels).map(([name, group]) => [
+      name,
+      { position: group.position.clone(), rotation: group.rotation.clone() },
+    ]),
   );
-  shell.addEventListener("pointerleave", () => {
-    pointerX = 0;
-    pointerY = 0;
+  Object.entries(panels).forEach(([name, group]) => {
+    group.userData.kind = name;
+  });
+  const raycaster = new THREE.Raycaster();
+  const cursor = new THREE.Vector2();
+  let down = null;
+  let selected = null;
+  let transition = 0;
+  let transitioning = false;
+  let dragRotation = -0.16;
+  function select(kind) {
+    selected = kind;
+    shell.dataset.selectedScreen = kind || "";
+    stop();
+    transitioning = true;
+    dragRotation = -0.16;
+    cancelAnimationFrame(transition);
+    const starts = Object.fromEntries(
+      Object.entries(panels).map(([name, group]) => [
+        name,
+        { position: group.position.clone(), rotation: group.rotation.clone() },
+      ]),
+    );
+    const start = performance.now();
+    const duration = reducedMotion.matches ? 0 : 450;
+    const initialRotation = sculpture.rotation.y;
+    function update(now) {
+      const t = duration ? Math.min((now - start) / duration, 1) : 1;
+      const ease = 1 - Math.pow(1 - t, 3);
+      sculpture.rotation.y = initialRotation + (-0.16 - initialRotation) * ease;
+      Object.entries(panels).forEach(([name, group]) => {
+        const targetPosition =
+          name === kind
+            ? new THREE.Vector3(0.6, 0.02, 2.9)
+            : original[name].position;
+        const targetRotation =
+          name === kind
+            ? new THREE.Euler(-0.03, 0.56, 0)
+            : original[name].rotation;
+        group.position.lerpVectors(starts[name].position, targetPosition, ease);
+        group.rotation.set(
+          ...["x", "y", "z"].map(
+            (axis) =>
+              starts[name].rotation[axis] +
+              (targetRotation[axis] - starts[name].rotation[axis]) * ease,
+          ),
+        );
+      });
+      if (!lost) renderer.render(scene, camera);
+      if (t < 1) transition = requestAnimationFrame(update);
+      else {
+        transitioning = false;
+        schedule();
+      }
+    }
+    transition = requestAnimationFrame(update);
+  }
+  canvas.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    stop();
+    cancelAnimationFrame(transition);
+    transitioning = false;
+    down = {
+      x: event.clientX,
+      y: event.clientY,
+      rotation: sculpture.rotation.y,
+      moved: false,
+    };
+    canvas.setPointerCapture(event.pointerId);
+  });
+  canvas.addEventListener("pointermove", (event) => {
+    if (!down) return;
+    const dx = event.clientX - down.x;
+    if (Math.abs(dx) > 6 || Math.abs(event.clientY - down.y) > 6)
+      down.moved = true;
+    if (Math.abs(dx) > 6) {
+      cancelAnimationFrame(transition);
+      sculpture.rotation.y = Math.max(
+        -0.95,
+        Math.min(0.6, down.rotation + dx * 0.006),
+      );
+      dragRotation = sculpture.rotation.y;
+      shell.dataset.rotation = String(dragRotation);
+      if (!lost) renderer.render(scene, camera);
+    }
+  });
+  canvas.addEventListener("pointerup", (event) => {
+    if (!down) return;
+    if (!down.moved) {
+      const rect = canvas.getBoundingClientRect();
+      cursor.set(
+        ((event.clientX - rect.left) / rect.width) * 2 - 1,
+        (-(event.clientY - rect.top) / rect.height) * 2 + 1,
+      );
+      raycaster.setFromCamera(cursor, camera);
+      const hit = raycaster.intersectObjects(Object.values(panels), true)[0];
+      if (hit) {
+        const kind = hit.object.parent.userData.kind;
+        select(kind);
+        onSelect(kind);
+      }
+    }
+    down = null;
+    schedule();
+    if (canvas.hasPointerCapture(event.pointerId))
+      canvas.releasePointerCapture(event.pointerId);
+  });
+  canvas.addEventListener("pointercancel", () => {
+    down = null;
+    schedule();
   });
   motion.addEventListener("click", () => {
     userPaused = !userPaused;
@@ -451,6 +558,8 @@ export function initScene(shell, reducedMotion) {
     event.preventDefault();
     lost = true;
     stop();
+    cancelAnimationFrame(transition);
+    transitioning = false;
     shell.classList.remove("scene-ready");
     motion.hidden = true;
     hint.textContent = "A new dimension of possibility";
@@ -466,9 +575,12 @@ export function initScene(shell, reducedMotion) {
   shell.classList.add("scene-ready");
   syncMotion();
   return {
+    select,
     pause() {
       pageVisible = false;
       stop();
+      cancelAnimationFrame(transition);
+      transitioning = false;
     },
     resume() {
       pageVisible = !document.hidden;
