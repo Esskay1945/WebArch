@@ -92,31 +92,73 @@
               ><span>3 months of support included.</span>
             </div>
           </div>
-          <div class="scene-shell" id="scene-shell">
-            <div class="scene-ambient" aria-hidden="true"></div>
-            <div class="scene-fallback" aria-hidden="true">
-              <div class="fallback-arch"></div>
-              <div class="fallback-window">
-                <span class="demo-kicker">WEBARCH / DIGITAL STUDIO</span
-                ><strong>Ideas into<br />experiences.</strong>
-                <div class="fallback-line"></div>
-                <span>Designed for your next chapter ↗</span>
+          <div class="hero-explorer">
+            <div class="scene-shell" id="scene-shell">
+              <div class="scene-ambient" aria-hidden="true"></div>
+              <div class="scene-fallback" aria-hidden="true">
+                <div class="fallback-arch"></div>
+                <div class="fallback-window">
+                  <span class="demo-kicker">WEBARCH / DIGITAL STUDIO</span
+                  ><strong>Ideas into<br />experiences.</strong>
+                  <div class="fallback-line"></div>
+                  <span>Designed for your next chapter ↗</span>
+                </div>
+              </div>
+              <canvas id="hero-canvas" aria-hidden="true"></canvas>
+              <span class="scene-label"
+                >THE WEBARCH WORLD <span>VOL. 02</span></span
+              >
+              <div class="scene-controls">
+                <span id="scene-hint">A new dimension of possibility</span
+                ><button
+                  id="motion-toggle"
+                  aria-label="Pause 3D animation"
+                  aria-pressed="false"
+                  hidden
+                >
+                  <span aria-hidden="true">Ⅱ</span>
+                </button>
               </div>
             </div>
-            <canvas id="hero-canvas" aria-hidden="true"></canvas>
-            <span class="scene-label"
-              >THE WEBARCH WORLD <span>VOL. 02</span></span
+            <div
+              class="hero-screen-controls"
+              role="group"
+              aria-label="Explore the 3D product screens"
             >
-            <div class="scene-controls">
-              <span id="scene-hint">A new dimension of possibility</span
-              ><button
-                id="motion-toggle"
-                aria-label="Pause 3D animation"
+              <button
+                type="button"
+                data-hero-screen="site"
                 aria-pressed="false"
-                hidden
               >
-                <span aria-hidden="true">Ⅱ</span>
+                Websites
               </button>
+              <button
+                type="button"
+                data-hero-screen="voice"
+                aria-pressed="false"
+              >
+                AI agents
+              </button>
+              <button type="button" data-hero-screen="ops" aria-pressed="false">
+                Business systems
+              </button>
+            </div>
+            <div class="hero-product-detail" hidden>
+              <button
+                type="button"
+                class="hero-detail-close"
+                aria-label="Return to sculpture"
+              >
+                ×
+              </button>
+              <h2 id="hero-detail-title"></h2>
+              <p id="hero-detail-text" aria-live="polite"></p>
+              <a
+                href="#contact"
+                class="hero-detail-link"
+                data-service="Websites &amp; portfolios"
+                >Build something like this ↗</a
+              >
             </div>
           </div>
         </div>
